@@ -3,13 +3,26 @@
 </head>
 
 <body>
+	{{> parent}}
 	{{> form}}
 	{{> messages}}
 </body>
 
 <template name="form">
-	<input id="name" type="text" placeholder="name">
-	<input id="message" type="text" placeholder="message">
+	<div id="form">
+		<input id="name" type="text" placeholder="name">
+		<input id="message" type="text" placeholder="message">
+	</div>
+</template>
+
+<template name="parent">
+	<table id="parent">
+		<tr>
+			<td width="30">0</td>
+			<td class="name"><a href="{{_id}}">{{parent.name}}</a></td>
+			<td class="message">{{parent.message}}</td>
+		</tr>
+	</table>
 </template>
 
 <template name="messages">
@@ -22,6 +35,6 @@
 
 <template name="message">
 	<td width="30">0</td>
-	<td><a href="{{_id}}">{{name}}</a></td>
+	<td class="name"><a href="{{_id}}">{{name}}</a></td>
 	<td>{{message}}</td>
 </template>

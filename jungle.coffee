@@ -9,10 +9,14 @@ Jungle = new Meteor.Collection "jungle"
 
 if Meteor.isClient
 
+	Template.parent.parent = ->
+		if Session.get('id')
+			Jungle.findOne { _id : Session.get('id') }
+
 	Template.messages.messages = -> 
-		#if Session.get('id')
-		#	Jungle.find { parent_id : Session.get('id') }, sort: { ts: -1 }
-		#else
+		if Session.get('id')
+			Jungle.find { parent_id : Session.get('id') }, sort: { ts: -1 }
+		else
 			Jungle.find {}, sort: { ts: -1 }
 
 	Template.form.events {
@@ -42,6 +46,7 @@ if Meteor.isClient
 	}
 
 	Meteor.Router.add {
+		'' : -> Session.set 'id', null
 		'/:id' : (id) ->
 			message = Jungle.findOne { _id : id }
 			Session.set 'id', id if message

@@ -1,9 +1,40 @@
 body {
 	font: 13px arial;
+	margin: 0;
 }
 p {
 	line-height: .8em;
 }
 a {
 	color: grey;
+}
+#form {
+	position: fixed;
+	width: 100%;
+	background-color: #DDD;
+	bottom: 0;
+	padding: 10px;
+}
+#form input {
+	padding: 5px;
+}
+#form input#message {
+	max-width: 700px;
+	min-width: 400px;
+}
+#parent {
+	width: 100%;
+	padding: 10px;
+	background-color: lightblue;
+}
+.name {
+	font-weight: bold;
+	font-size: 14px;
+}
+
+#parent .name {
+	width: 100px;
+}
+#parent .message {
+	font-size: 20px;
 }
