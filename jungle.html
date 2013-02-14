@@ -1,0 +1,27 @@
+<head>
+  <title>jungle</title>
+</head>
+
+<body>
+	{{> form}}
+	{{> messages}}
+</body>
+
+<template name="form">
+	<input id="name" type="text" placeholder="name">
+	<input id="message" type="text" placeholder="message">
+</template>
+
+<template name="messages">
+	<table>
+	{{#each messages}}
+		<tr>{{> message}}</tr>
+	{{/each}}
+	</table>
+</template>
+
+<template name="message">
+	<td width="30">0</td>
+	<td><a href="{{_id}}">{{name}}</a></td>
+	<td>{{message}}</td>
+</template>
