@@ -1,12 +1,13 @@
 
-Meteor.autorun ->
-	Meteor.subscribe 'jungle', { parent_id: Session.get('id') }
+#Meteor.autorun ->
+
+#Meteor.subscribe 'jungle', -> 
+#	if Session.get('id')
+#		messages = { parent_id: Session.get('id') }
 
 Jungle = new Meteor.Collection "jungle"
 
 if Meteor.isClient
-
-	Template.
 
 	Template.messages.messages = -> 
 		#if Session.get('id')
@@ -40,14 +41,11 @@ if Meteor.isClient
 				$('input#message').val("")
 	}
 
-	JungleRouter = Backbone.Router.extend {
-		routes: { ':id': 'main' },
-		main: (id) ->
-			message = Jungle.findOne { _id : message._id }
+	Meteor.Router.add {
+		'/:id' : (id) ->
+			message = Jungle.findOne { _id : id }
 			Session.set 'id', id if message
 	}
-
-	Router = new JungleRouter
 
 
 
