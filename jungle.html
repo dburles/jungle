@@ -18,7 +18,7 @@
 <template name="parent">
 	<table id="parent">
 		<tr>
-			<td width="30">0</td>
+			<td width="30"><a href="/{{parent.parent_id}}#{{parent._id}}">^</a> {{parent.message_count}}</td>
 			<td class="name"><a href="{{_id}}">{{parent.name}}</a></td>
 			<td class="message">{{parent.message}}</td>
 		</tr>
@@ -28,13 +28,15 @@
 <template name="messages">
 	<table>
 	{{#each messages}}
-		<tr>{{> message}}</tr>
+		{{> message}}
 	{{/each}}
 	</table>
 </template>
 
 <template name="message">
-	<td width="30">0</td>
-	<td class="name"><a href="{{_id}}">{{name}}</a></td>
-	<td>{{message}}</td>
+	<tr id="{{_id}}">
+		<td width="30">{{message_count}}</td>
+		<td class="name"><a href="{{_id}}">{{name}}</a></td>
+		<td>{{message}}</td>
+	</tr>
 </template>

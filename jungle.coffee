@@ -33,12 +33,15 @@ if Meteor.isClient
 						parent_id: Session.get('id'),
 						name: name,
 						message: $('input#message').val(),
+						message_count: 0,
 						ts: Date.parse new Date,
 					}
+					Jungle.update { _id: Session.get('id') }, { $inc: { message_count: 1 } }
 				else
 					Jungle.insert {
 						name: name,
 						message: $('input#message').val(),
+						message_count: 0,
 						ts: Date.parse new Date
 					}
 
