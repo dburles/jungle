@@ -23,8 +23,8 @@ if Meteor.isClient
 		'keypress input#message' : (e) ->
 			if e.which is 13
 
-				if $('input#name').val()
-					name = $('input#name').val()
+				if Meteor.user()
+					name = Meteor.user().username
 				else
 					name = "Anonymous"
 				
@@ -42,7 +42,7 @@ if Meteor.isClient
 						name: name,
 						message: $('input#message').val(),
 						message_count: 0,
-						ts: Date.parse new Date
+						ts: Date.parse new Date,
 					}
 
 				$('input#message').val("")
@@ -55,7 +55,27 @@ if Meteor.isClient
 			Session.set 'id', id if message
 	}
 
+	Accounts.ui.config {
+		passwordSignupFields: 'USERNAME_AND_EMAIL'
+	}
 
+if Meteor.isServer
+	Meteor.startup ->
+		if Jungle.find().count() == 0
+
+			user_id = Accounts.createUser {
+				username: 'dave',
+				email: 'dburles@gmail.com',
+				password: 'password',
+			}
+
+			Jungle.insert {
+				user_id: user_id,
+				name: 'dave',
+				message: 'Hello World!',
+				message_count: 0,
+				ts: Date.parse new Date,
+			}
 
 ###
 	Template.messages.messages

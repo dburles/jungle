@@ -9,3 +9,6 @@ preserve-inputs
 coffeescript
 jquery
 router
+accounts-password
+accounts-base
+accounts-ui

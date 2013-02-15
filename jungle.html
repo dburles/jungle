@@ -10,7 +10,6 @@
 
 <template name="form">
 	<div id="form">
-		<input id="name" type="text" placeholder="name">
 		<input id="message" type="text" placeholder="message">
 	</div>
 </template>
@@ -19,14 +18,15 @@
 	<table id="parent">
 		<tr>
 			<td width="30"><a href="/{{parent.parent_id}}#{{parent._id}}">^</a> {{parent.message_count}}</td>
-			<td class="name"><a href="{{_id}}">{{parent.name}}</a></td>
+			<td class="name">{{parent.name}}</td>
 			<td class="message">{{parent.message}}</td>
+			<td align="right">{{loginButtons align="right"}}</td>
 		</tr>
 	</table>
 </template>
 
 <template name="messages">
-	<table>
+	<table id="messages">
 	{{#each messages}}
 		{{> message}}
 	{{/each}}
@@ -37,6 +37,6 @@
 	<tr id="{{_id}}">
 		<td width="30">{{message_count}}</td>
 		<td class="name"><a href="{{_id}}">{{name}}</a></td>
-		<td>{{message}}</td>
+		<td class="message">{{message}}</td>
 	</tr>
 </template>
