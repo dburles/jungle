@@ -15,12 +15,15 @@ p {
 #form {
 	position: fixed;
 	width: 100%;
-	background-color: #DDD;
+	background-color: #333;
 	bottom: 0;
 	padding: 10px;
 }
 #form input {
 	padding: 5px;
+}
+#form input#image {
+	width: 300px;
 }
 #form input#message {
 	width: 100%;

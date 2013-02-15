@@ -8,7 +8,6 @@
 Jungle = new Meteor.Collection "jungle"
 
 if Meteor.isClient
-
 	Template.parent.parent = ->
 		if Session.get('id')
 			Jungle.findOne { _id : Session.get('id') }
@@ -19,6 +18,11 @@ if Meteor.isClient
 		else
 			Jungle.find {}, sort: { ts: -1 }
 
+	Template.parent.events {
+		'click a#gotoparent' : ->
+			Session.set 'id', $('a#gotoparent').attr('href')
+	}
+	
 	Template.form.events {
 		'keypress input#message' : (e) ->
 			if e.which is 13
@@ -31,6 +35,7 @@ if Meteor.isClient
 				if Session.get('id') 
 					Jungle.insert {
 						parent_id: Session.get('id'),
+						image: $('input#image').val(),
 						name: name,
 						message: $('input#message').val(),
 						message_count: 0,
@@ -45,6 +50,7 @@ if Meteor.isClient
 						ts: Date.parse new Date,
 					}
 
+				$('input#image').val("")
 				$('input#message').val("")
 	}
 
@@ -62,7 +68,6 @@ if Meteor.isClient
 if Meteor.isServer
 	Meteor.startup ->
 		if Jungle.find().count() == 0
-
 			user_id = Accounts.createUser {
 				username: 'dave',
 				email: 'dburles@gmail.com',
