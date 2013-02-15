@@ -77,15 +77,3 @@ if Meteor.isServer
 				ts: Date.parse new Date,
 			}
 
-###
-	Template.messages.messages
-		if (id in url)
-
-			return data where parent_id = ( example.com/(id) )
-
-	Template.form.events 
-		if (id in url)
-			
-			insert { parent_id: id }
-	
-###
