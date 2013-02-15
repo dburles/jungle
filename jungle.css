@@ -26,6 +26,9 @@ p {
 	width: 100%;
 	padding: 10px 10px -100px 10px;
 }
+#messages {
+	padding: 10px;
+}
 #messages a {
 	color: #777;
 }
@@ -47,6 +50,7 @@ p {
 }
 #form input {
 	padding: 5px;
+	font-size: 18px;
 }
 #form input#image {
 	float: right;
@@ -60,11 +64,17 @@ p {
 	padding: 10px;
 	background-color: lightblue;
 }
-
-.name {
+td.count {
 	font-weight: bold;
-	font-size: 14px;
+}
+td.name {
+	font-weight: bold;
+	font-size: 16px;
 	width: 100px;
+	padding: 5px;
+}
+td.message {
+	font-size: 16px;
 }
 
 #parent td.name {
