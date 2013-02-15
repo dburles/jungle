@@ -1,0 +1,2 @@
+friends list + private messages
+profile page listing activity
