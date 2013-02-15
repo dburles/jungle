@@ -61,7 +61,7 @@ if Meteor.isClient
 
 	Meteor.Router.add {
 		'' : -> Session.set 'id', null
-		'/:id' : (id) ->
+		'/post/:id' : (id) ->
 			message = Jungle.findOne { _id : id }
 			Session.set 'id', id if message
 	}

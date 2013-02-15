@@ -12,3 +12,4 @@ router
 accounts-password
 accounts-base
 accounts-ui
+filepicker
