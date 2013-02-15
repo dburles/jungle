@@ -8,21 +8,26 @@
 Jungle = new Meteor.Collection "jungle"
 
 if Meteor.isClient
-	Template.parent.parent = ->
+	Template.top.parent = ->
 		if Session.get('id')
 			Jungle.findOne { _id : Session.get('id') }
 
-	Template.messages.messages = -> 
+	Template.messages.messages = ->
 		if Session.get('id')
 			Jungle.find { parent_id : Session.get('id') }, sort: { ts: -1 }
 		else
 			Jungle.find {}, sort: { ts: -1 }
 
-	Template.parent.events {
+	Template.top.events {
 		'click a#gotoparent' : ->
 			Session.set 'id', $('a#gotoparent').attr('href')
+			$('input#message').focus()
 	}
 	
+	Template.messages.events {
+		'click a' : -> $('input#message').focus()
+	}
+
 	Template.form.events {
 		'keypress input#message' : (e) ->
 			if e.which is 13

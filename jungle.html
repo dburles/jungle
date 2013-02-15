@@ -3,22 +3,20 @@
 </head>
 
 <body>
-	{{> parent}}
-	{{> form}}
-	{{> messages}}
+	<div id="wrapper">
+		{{> top}}
+		{{> form}}
+		{{> messages}}
+	</div>
 </body>
 
-<template name="form">
-	<div id="form">
-		<input id="image" type="text" placeholder="paste url to an image">
-		<input id="message" type="text" placeholder="message">
+<template name="top">
+	<div id="nav">
+		<a id="gotoparent" href="{{parent.parent_id}}">^up</a>
 	</div>
-</template>
-
-<template name="parent">
 	<table id="parent">
 		<tr>
-			<td width="30"><a id="gotoparent" href="{{parent.parent_id}}">^up</a><br />{{parent.message_count}}</td>
+			<td width="30">{{parent.message_count}}</td>
 			<td width="150">{{#if parent.image}}<a href="{{parent.image}}" target="_blank"><img src="{{parent.image}}" width="150" height="150"></a>{{/if}}</td>
 			<td class="name">{{parent.name}}</td>
 			<td class="message">{{parent.message}}</td>
@@ -28,11 +26,13 @@
 </template>
 
 <template name="messages">
-	<table id="messages">
-	{{#each messages}}
-		{{> message}}
-	{{/each}}
-	</table>
+	<div id="messages_wrapper">
+		<table id="messages">
+		{{#each messages}}
+			{{> message}}
+		{{/each}}
+		</table>
+	</div>
 </template>
 
 <template name="message">
@@ -42,4 +42,11 @@
 		<td class="name"><a href="{{_id}}">{{name}}</a></td>
 		<td class="message">{{message}}</td>
 	</tr>
+</template>
+
+<template name="form">
+	<div id="form">
+		<input id="image" type="text" placeholder="paste url to an image">
+		<input id="message" type="text" placeholder="message">
+	</div>
 </template>
