@@ -5,6 +5,7 @@ body {
 	font: 13px arial;
 	margin: 0;
 	height: 100%;
+	background: #DDD;
 }
 p {
 	line-height: .8em;
@@ -30,15 +31,16 @@ p {
 #parent {
 	width: 100%;
 	padding: 10px;
+	background: #FFF;
 }
 #messages_wrapper {
-	height: 300px;
-	overflow-y: scroll;
+	margin-top: 20px;
+	/*overflow-y: scroll;*/
 	width: 100%;
-	border: 1px solid red;
+	background: #FFF;
 }
 #messages {
-	padding: 0 10px 0 10px;	
+	padding: 10px;
 }
 #messages a {
 	color: #777;
@@ -52,28 +54,34 @@ p {
 	color: #FFF;
 }
 #form {
-	position: absolute;
-	display: block;
-	
 	background-color: #333;
-	bottom: 0;
 	padding: 10px;
 }
-#form span.io {
+#form #attachment {
+	width: 100px;
+}
+#form #attachment #picker {
+	width: 100%;
+}
+#form #attachment span.io {
 	display: block;
 	color: #FFF;
-	padding: 10px;
+	padding: 5px;
 }
-#form span.io a {
-	color: #FFF;
+#form #attachment span.ready {
+	display: none;
+}
+#form #attachment span.ready a.remove {
+	background: url('/images/bin.gif');
+	width: 16px;
+	height: 16px;
+	display: block;
+	float: right;
 }
 #form input#message {
 	width: 100%;
 	padding: 5px;
 	font-size: 18px;
-}
-#form #attachment_wrapper {
-	width: 200px;
 }
 
 td.count {

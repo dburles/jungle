@@ -5,7 +5,6 @@
 <body>
 	<div id="wrapper">
 		{{> top}}
-		{{> form}}
 		{{> messages}}
 	</div>
 </body>
@@ -24,6 +23,7 @@
 				<td align="right">{{loginButtons align="right"}}</td>
 			</tr>
 		</table>
+		{{> form}}
 	</div>
 </template>
 
@@ -60,8 +60,14 @@
 					<input id="message" type="text" placeholder="message">
 				</td>
 				<td>
-					<div id="attachment_wrapper">
-						<input id="attachment" type="filepicker-dragdrop" data-fp-multiple="false" />
+					<div id="attachment">
+						<span class="io">
+							<input id="picker" type="button" value="Pick File">
+							<span class="ready">
+								Ready.
+								<a href="#" class="remove"></a>
+							</span>
+						</span>
 					</div>
 				</td>
 			</tr>

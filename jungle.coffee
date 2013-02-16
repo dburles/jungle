@@ -6,11 +6,11 @@
 #		messages = { parent_id: Session.get('id') }
 
 Jungle = new Meteor.Collection "jungle"
-#Ay0CJr5oZQi6jI6mzQTbgz
+
 if Meteor.isClient
 	Meteor.startup ->
 		filepicker.setKey("Ay0CJr5oZQi6jI6mzQTbgz")
-		filepicker.constructWidget($('#attachment'))
+		#filepicker.constructWidget($('#attachment'))
 
 	Meteor.autorun ->
 		Meteor.subscribe "jungle", Session.get('id')
@@ -54,14 +54,31 @@ if Meteor.isClient
 						file: @file,
 					}
 					Jungle.update { _id: Session.get('id') }, { $inc: { message_count: 1 } }
+					@file = null
 
 					$url.val("")
 					$message.val("")
+					$('#attachment #picker').show()
+					$('#attachment .ready').hide()
 
-				$('#messages_wrapper').scrollTop(999999)
+				#$('#messages_wrapper').scrollTop(999999)
 
-		'change #attachment': (e) ->
-			@file = e.fpfile
+		'click #attachment #picker': ->
+			filepicker.pick {}, 
+				(FPFile) ->
+					@file = FPFile 
+					#console.log(@file)
+					$('#form #attachment #picker').hide()
+					$('#attachment .ready').show()
+				(FPError) ->
+		'click #attachment span.ready a.remove': ->
+			#delete file
+			filepicker.remove(@file)
+			$('#attachment #picker').show()
+			$('#attachment .ready').hide()
+
+		#'change #attachment': (e) ->
+		#	@file = e.fpfile
 	}
 
 	Meteor.Router.add {
