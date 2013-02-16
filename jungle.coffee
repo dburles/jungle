@@ -33,7 +33,7 @@ if Meteor.isClient
 	#}
 
 	Template.form.events {
-		'keypress input#message': (e) ->
+		'keyup input#message': (e) ->
 			if e.which is 13
 				$url = $('input#url')
 				$message = $('input#message')

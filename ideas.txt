@@ -1,2 +1,6 @@
 friends list + private messages
 profile page listing activity
+
+***
+SECURE IT
+limit username length!

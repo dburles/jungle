@@ -2,8 +2,8 @@ html {
 	height: 100%;
 }
 body {
-	font: 13px arial;
-	margin: 0;
+	font-family: Arial, Helvetica;
+	margin: 10px;
 	height: 100%;
 	background: url('/images/pw_maze_white.png') #DDD;
 }
@@ -17,24 +17,24 @@ p {
 }
 
 .shadow {
-	-webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
-	-moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
-	-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+	-webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+	-moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+	-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
 #logo {
 	width: 100%;
 	display: block;
-	padding: 0 0 10px 0;
+	margin: 0 0 10px 0;
 }
 #logo span {
 	margin: auto;
 	font-family: Helvetica;
-	font-size: 15px;
+	font-size: 1.5em;
 	font-weight: bold;
 	margin-left: 10px; 
 }
 #logo span.small {
-	font-size: 11px;
+	font-size: 0.6em;
 }
 #wrapper {
 	max-width: 1000px;
@@ -48,8 +48,9 @@ p {
 	-moz-border-radius: 4px;
 	border-radius: 4px;
 }
+
 .breath {
-	padding: 2px;
+	padding: 2px 2px 0 2px;
 	background: #FFF;
 }
 #parent {
@@ -64,7 +65,7 @@ p {
 	background: #FFF;
 }
 #messages {
-	padding: 10px 10px 20px 10px;
+	padding: 10px 10px 10px 10px;
 }
 #messages a {
 	color: #777;
@@ -72,7 +73,8 @@ p {
 #nav {
 	width: 100%;
 	background: url('/images/escheresque_ste.png') #333;
-	padding: 10px
+	padding: 10px;
+	font-size: 2em;
 }
 #nav a#gotoparent {
 	color: #FFF;
@@ -91,7 +93,7 @@ p {
 	padding: 10px;
 }
 #form #attachment {
-	width: 100px;
+	width: 110px;
 }
 #form #attachment #picker {
 	width: 100%;
@@ -115,21 +117,27 @@ p {
 #form input#message {
 	width: 100%;
 	padding: 5px;
-	font-size: 18px;
+	font-size: 2em;
 }
 
 td.count {
-	color: #CCC;
-	font-size: 15px;
+	color: #AAA;
+	font-size: 1.2em;
 }
 td.name {
-	font-weight: bold;
-	font-size: 16px;
+	/*font-weight: bold;*/
+	font-size: 1.4em;
 	width: 100px;
 	padding: 5px;
 }
+td.name a {
+	text-decoration: none;
+}
+td.name a:hover {
+	text-decoration: underline;
+}
 td.message {
-	font-size: 14px;
+	font-size: 1.2em;
 }
 #parent .post {
 	clear: both;
@@ -140,14 +148,14 @@ td.message {
 }
 #parent .post span.name {
 	font-weight: bold;
-	font-size: 20px;
+	font-size: 1.4em;
 	color: #999;
 	margin-right: 10px;
 	width: 100%;
 }
 #parent .post span.message {
 	clear: both;
-	font-size: 17px;
+	font-size: 1.2em;
 	width: 100%;
 }
 #parent img {
@@ -166,10 +174,10 @@ td.message {
 .btn {
   display: inline-block;
   *display: inline;
-  padding: 4px 12px;
+  padding: 14px 12px;
   margin-bottom: 0;
   *margin-left: .3em;
-  font-size: 14px;
+  font-size: 1.3em;
   line-height: 20px;
   color: #333333;
   text-align: center;
