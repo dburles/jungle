@@ -48,10 +48,19 @@ p {
 #nav {
 	width: 100%;
 	background: #333;
-	padding: 5px;
+	padding: 10px
 }
-#nav a {
+#nav a#gotoparent {
 	color: #FFF;
+}
+#nav #login {
+	float: right;
+}
+#login-buttons a.login-link-text {
+	color: #FFF;
+}
+.accounts-dialog {
+	margin-right: 0;
 }
 #form {
 	background-color: #333;
@@ -95,19 +104,27 @@ td.name {
 	padding: 5px;
 }
 td.message {
+	font-size: 14px;
+}
+#parent .post {
+	clear: both;
+	margin: 20px 0;
+}
+#parent span.name {
+	font-weight: bold;
 	font-size: 16px;
+	color: #999;
 }
-
-#parent td.name {
-	width: 100px;
-}
-#parent td.message {
+#parent span.message {
 	font-size: 20px;
 }
-
-#login-buttons a.login-link-text {
-	color: #000;
+#parent img {
+	margin: 0 0 10px 0;
 }
-.accounts-dialog {
-	margin-right: 0;
+
+
+#footer {
+
+	padding: 10px;
+	margin-top: 20px;
 }

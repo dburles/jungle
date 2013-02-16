@@ -10,7 +10,6 @@ Jungle = new Meteor.Collection "jungle"
 if Meteor.isClient
 	Meteor.startup ->
 		filepicker.setKey("Ay0CJr5oZQi6jI6mzQTbgz")
-		#filepicker.constructWidget($('#attachment'))
 
 	Meteor.autorun ->
 		Meteor.subscribe "jungle", Session.get('id')
@@ -18,8 +17,10 @@ if Meteor.isClient
 	Template.top.parent = ->
 		Jungle.findOne { _id : Session.get('id') }
 
-	Template.messages.messages = ->
+	Template.messages.posts = ->
 		Jungle.find { _id : { $not: Session.get('id') } }, sort: { ts: -1 }
+	Template.messages.count = ->
+		Jungle.find({ _id : { $not: Session.get('id') } }, sort: { ts: -1 }).count()
 
 	#Template.top.events {
 	#	'click a#gotoparent' : ->
@@ -27,9 +28,9 @@ if Meteor.isClient
 	#		$('input#message').focus()
 	#}
 	
-	Template.messages.events {
-		'click a': -> $('input#message').focus()
-	}
+	#Template.messages.events {
+	#	'click a': -> $('input#message').focus()
+	#}
 
 	Template.form.events {
 		'keypress input#message': (e) ->
@@ -76,6 +77,7 @@ if Meteor.isClient
 			filepicker.remove(@file)
 			$('#attachment #picker').show()
 			$('#attachment .ready').hide()
+			false
 
 		#'change #attachment': (e) ->
 		#	@file = e.fpfile
