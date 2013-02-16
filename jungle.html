@@ -4,40 +4,49 @@
 
 <body>
 	<div id="wrapper">
+		<div id="logo">
+			<span>JUNGLE</span>
+			<span class="small">(codename) v0.1</span>
+			<span class="small">communication &amp image sharing using recursive relationships</span>
+		</div>
 		{{> top}}
 		{{> messages}}
 		{{> footer}}
 	</div>
 </body>
 
-<template name="top">
-	<div class="shadow">
-		<div id="nav">
-			<a id="gotoparent" href="/post/{{parent.parent_id}}">^up</a>
-			<span id="login">{{loginButtons align="right"}}</span>
+<template name="top">	
+	
+		<div class="breath shadow round">
+			<div id="nav" class="round">
+				<a id="gotoparent" href="/post/{{parent.parent_id}}">^up</a>
+				<span id="login">{{loginButtons align="right"}}</span>
+			</div>
+			<div class="">
+				<table id="parent">
+					<tr>
+						<td class="count" width="30" valign="top">{{parent.message_count}}</td>
+						<td align="middle">
+							{{#if parent.file}}
+								<img src="{{parent.file.url}}/convert?w=800&fit=crop">
+							{{/if}}
+							<div class="post">
+								<span class="name">{{parent.name}}</span>
+								<span class="message">{{parent.message}}</span>
+							</div>
+						</td>
+						<td align="right"></td>
+					</tr>
+				</table>
+				{{> form}}
+			</div>
 		</div>
-		<table id="parent">
-			<tr>
-				<td class="count" width="30">{{parent.message_count}}</td>
-				<td align="middle">
-					{{#if parent.file}}
-						<img src="{{parent.file.url}}/convert?w=800&fit=crop">
-					{{/if}}
-					<div class="post">
-						<span class="name">{{parent.name}}</span>
-						<span class="message">{{parent.message}}</span>
-					</div>
-				</td>
-				<td align="right"></td>
-			</tr>
-		</table>
-		{{> form}}
-	</div>
+	
 </template>
 
 <template name="messages">
 	{{#if count}}
-	<div id="messages_wrapper" class="shadow">
+	<div id="messages_wrapper" class="shadow round">
 		<table id="messages">
 		{{#each posts}}
 			{{> post}}
@@ -49,8 +58,8 @@
 
 <template name="post">
 	<tr id="{{_id}}">
-		<td class="count" width="30">{{message_count}}</td>
-		<td width="50">
+		<td class="count" align="center" width="20">{{message_count}}</td>
+		<td width="70" align="center">
 			{{#if file}}
 			<a href="/post/{{_id}}">
 				<img src="{{file.url}}/convert?w=50&h=50&fit=crop" width="50" height="50">
@@ -63,7 +72,7 @@
 </template>
 
 <template name="form">
-	<div id="form">
+	<div id="form" class="round">
 		<table>
 			<tr>
 				<td width="100%">
@@ -72,7 +81,7 @@
 				<td>
 					<div id="attachment">
 						<span class="io">
-							<input id="picker" type="button" value="Pick File">
+							<a id="picker" class="btn-primary btn">+ Image</a>
 							<span class="ready">
 								Ready.
 								<a href="#" class="remove"></a>

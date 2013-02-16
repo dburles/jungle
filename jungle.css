@@ -5,7 +5,7 @@ body {
 	font: 13px arial;
 	margin: 0;
 	height: 100%;
-	background: #DDD;
+	background: url('/images/pw_maze_white.png') #DDD;
 }
 p {
 	line-height: .8em;
@@ -17,16 +17,40 @@ p {
 }
 
 .shadow {
-	-webkit-box-shadow: 0 8px 10px rgba(0, 0, 0, 0.2);
-	-moz-box-shadow: 0 8px 10px rgba(0, 0, 0, 0.2);
-	-box-shadow: 0 8px 10px rgba(0, 0, 0, 0.2);
+	-webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+	-moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+	-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
 }
-
+#logo {
+	width: 100%;
+	display: block;
+	padding: 0 0 10px 0;
+}
+#logo span {
+	margin: auto;
+	font-family: Helvetica;
+	font-size: 15px;
+	font-weight: bold;
+	margin-left: 10px; 
+}
+#logo span.small {
+	font-size: 11px;
+}
 #wrapper {
 	max-width: 1000px;
 	margin: auto;
 	position: relative;
 	min-height: 100%;
+	margin-top: 15px;
+}
+.round {
+	webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+}
+.breath {
+	padding: 2px;
+	background: #FFF;
 }
 #parent {
 	width: 100%;
@@ -40,14 +64,14 @@ p {
 	background: #FFF;
 }
 #messages {
-	padding: 10px;
+	padding: 10px 10px 20px 10px;
 }
 #messages a {
 	color: #777;
 }
 #nav {
 	width: 100%;
-	background: #333;
+	background: url('/images/escheresque_ste.png') #333;
 	padding: 10px
 }
 #nav a#gotoparent {
@@ -63,7 +87,7 @@ p {
 	margin-right: 0;
 }
 #form {
-	background-color: #333;
+	background: url('/images/escheresque_ste.png') #333;
 	padding: 10px;
 }
 #form #attachment {
@@ -75,10 +99,11 @@ p {
 #form #attachment span.io {
 	display: block;
 	color: #FFF;
-	padding: 5px;
+	padding: 5px 0 5px 5px;
 }
 #form #attachment span.ready {
 	display: none;
+	font-weight: bold;
 }
 #form #attachment span.ready a.remove {
 	background: url('/images/bin.gif');
@@ -110,13 +135,20 @@ td.message {
 	clear: both;
 	margin: 20px 0;
 }
-#parent span.name {
-	font-weight: bold;
-	font-size: 16px;
-	color: #999;
+#parent .post span {
+	display: block;
 }
-#parent span.message {
+#parent .post span.name {
+	font-weight: bold;
 	font-size: 20px;
+	color: #999;
+	margin-right: 10px;
+	width: 100%;
+}
+#parent .post span.message {
+	clear: both;
+	font-size: 17px;
+	width: 100%;
 }
 #parent img {
 	margin: 0 0 10px 0;
@@ -127,4 +159,136 @@ td.message {
 
 	padding: 10px;
 	margin-top: 20px;
+}
+
+
+
+.btn {
+  display: inline-block;
+  *display: inline;
+  padding: 4px 12px;
+  margin-bottom: 0;
+  *margin-left: .3em;
+  font-size: 14px;
+  line-height: 20px;
+  color: #333333;
+  text-align: center;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+  vertical-align: middle;
+  cursor: pointer;
+  background-color: #f5f5f5;
+  *background-color: #e6e6e6;
+  background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6));
+  background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6);
+  background-image: -o-linear-gradient(top, #ffffff, #e6e6e6);
+  background-image: linear-gradient(to bottom, #ffffff, #e6e6e6);
+  background-repeat: repeat-x;
+  border: 1px solid #cccccc;
+  *border: 0;
+  border-color: #e6e6e6 #e6e6e6 #bfbfbf;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  border-bottom-color: #b3b3b3;
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffe6e6e6', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+  *zoom: 1;
+  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+     -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+          box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.btn:hover,
+.btn:focus,
+.btn:active,
+.btn.active,
+.btn.disabled,
+.btn[disabled] {
+  color: #333333;
+  background-color: #e6e6e6;
+  *background-color: #d9d9d9;
+}
+
+.btn:active,
+.btn.active {
+  background-color: #cccccc \9;
+}
+
+.btn:first-child {
+  *margin-left: 0;
+}
+
+.btn:hover,
+.btn:focus {
+  color: #333333;
+  text-decoration: none;
+  background-position: 0 -15px;
+  -webkit-transition: background-position 0.1s linear;
+     -moz-transition: background-position 0.1s linear;
+       -o-transition: background-position 0.1s linear;
+          transition: background-position 0.1s linear;
+}
+
+.btn:focus {
+  outline: thin dotted #333;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+
+.btn.active,
+.btn:active {
+  background-image: none;
+  outline: 0;
+  -webkit-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+     -moz-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+          box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.btn.disabled,
+.btn[disabled] {
+  cursor: default;
+  background-image: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+     -moz-box-shadow: none;
+          box-shadow: none;
+}
+
+
+
+
+.btn-primary {
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: #006dcc;
+  *background-color: #0044cc;
+  background-image: -moz-linear-gradient(top, #0088cc, #0044cc);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0044cc));
+  background-image: -webkit-linear-gradient(top, #0088cc, #0044cc);
+  background-image: -o-linear-gradient(top, #0088cc, #0044cc);
+  background-image: linear-gradient(to bottom, #0088cc, #0044cc);
+  background-repeat: repeat-x;
+  border-color: #0044cc #0044cc #002a80;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0044cc', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.btn-primary.disabled,
+.btn-primary[disabled] {
+  color: #ffffff;
+  background-color: #0044cc;
+  *background-color: #003bb3;
+}
+
+.btn-primary:active,
+.btn-primary.active {
+  background-color: #003399 \9;
 }
