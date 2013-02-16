@@ -32,13 +32,13 @@ p {
 	padding: 10px;
 }
 #messages_wrapper {
-	height: 100%;
+	height: 300px;
 	overflow-y: scroll;
 	width: 100%;
-	padding: 10px 10px -100px 10px;
+	border: 1px solid red;
 }
 #messages {
-	padding: 10px;
+	padding: 0 10px 0 10px;	
 }
 #messages a {
 	color: #777;
@@ -54,31 +54,31 @@ p {
 #form {
 	position: absolute;
 	display: block;
-	width: 100%;
+	
 	background-color: #333;
 	bottom: 0;
 	padding: 10px;
 }
-#form .input_wrapper {
-	float: right;
-}
-#form .question {
+#form span.io {
+	display: block;
+	color: #FFF;
 	padding: 10px;
 }
-#form input {
-	padding: 5px;
-	font-size: 18px;
-}
-#form input#image {
-	
-	width: 300px;
+#form span.io a {
+	color: #FFF;
 }
 #form input#message {
 	width: 100%;
+	padding: 5px;
+	font-size: 18px;
+}
+#form #attachment_wrapper {
+	width: 200px;
 }
 
 td.count {
-	font-weight: bold;
+	color: #CCC;
+	font-size: 15px;
 }
 td.name {
 	font-weight: bold;

@@ -18,7 +18,7 @@
 		<table id="parent">
 			<tr>
 				<td class="count" width="30">{{parent.message_count}}</td>
-				<td width="150">{{#if parent.image}}<a href="{{parent.image}}" target="_blank"><img src="{{parent.image}}" width="150" height="150"></a>{{/if}}</td>
+				<td width="150">{{#if parent.file}}<a href="{{parent.file.url}}" target="_blank"><img src="{{parent.file.url}}/convert?w=150&h=150&fit=crop" width="150" height="150"></a>{{/if}}</td>
 				<td class="name">{{parent.name}}</td>
 				<td class="message">{{parent.message}}</td>
 				<td align="right">{{loginButtons align="right"}}</td>
@@ -40,7 +40,13 @@
 <template name="message">
 	<tr id="{{_id}}">
 		<td class="count" width="30">{{message_count}}</td>
-		<td width="50">{{#if image}}<a href="/post/{{_id}}"><img src="{{image}}" width="50" height="50"></a>{{/if}}</td>
+		<td width="50">
+			{{#if file}}
+			<a href="/post/{{_id}}">
+				<img src="{{file.url}}/convert?w=50&h=50&fit=crop" width="50" height="50">
+			</a>
+			{{/if}}
+		</td>
 		<td class="name"><a href="/post/{{_id}}">{{name}}</a></td>
 		<td class="message">{{message}}</td>
 	</tr>
@@ -48,9 +54,17 @@
 
 <template name="form">
 	<div id="form">
-		<div class="input_wrapper">
-			<span class="question"><a id="help_media" href="#"><img src="/images/question.png"></a></span><input id="image" type="text" placeholder="paste url">
-		</div>
-		<input id="message" type="text" placeholder="message">
+		<table>
+			<tr>
+				<td width="100%">
+					<input id="message" type="text" placeholder="message">
+				</td>
+				<td>
+					<div id="attachment_wrapper">
+						<input id="attachment" type="filepicker-dragdrop" data-fp-multiple="false" />
+					</div>
+				</td>
+			</tr>
+		</table>
 	</div>
 </template>

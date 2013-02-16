@@ -6,64 +6,69 @@
 #		messages = { parent_id: Session.get('id') }
 
 Jungle = new Meteor.Collection "jungle"
-
+#Ay0CJr5oZQi6jI6mzQTbgz
 if Meteor.isClient
+	Meteor.startup ->
+		filepicker.setKey("Ay0CJr5oZQi6jI6mzQTbgz")
+		filepicker.constructWidget($('#attachment'))
+
+	Meteor.autorun ->
+		Meteor.subscribe "jungle", Session.get('id')
+
 	Template.top.parent = ->
-		if Session.get('id')
-			Jungle.findOne { _id : Session.get('id') }
+		Jungle.findOne { _id : Session.get('id') }
 
 	Template.messages.messages = ->
-		if Session.get('id')
-			Jungle.find { parent_id : Session.get('id') }, sort: { ts: -1 }
-		else
-			Jungle.find {}, sort: { ts: -1 }
+		Jungle.find { _id : { $not: Session.get('id') } }, sort: { ts: -1 }
 
-	Template.top.events {
-		'click a#gotoparent' : ->
-			Session.set 'id', $('a#gotoparent').attr('href')
-			$('input#message').focus()
-	}
+	#Template.top.events {
+	#	'click a#gotoparent' : ->
+	#		Session.set 'id', $('a#gotoparent').attr('href')
+	#		$('input#message').focus()
+	#}
 	
 	Template.messages.events {
-		'click a' : -> $('input#message').focus()
+		'click a': -> $('input#message').focus()
 	}
 
 	Template.form.events {
-		'keypress input#message' : (e) ->
+		'keypress input#message': (e) ->
 			if e.which is 13
+				$url = $('input#url')
+				$message = $('input#message')
 
 				if Meteor.user()
 					name = Meteor.user().username
 				else
 					name = "Anonymous"
-				
-				if Session.get('id') 
+			
+				if $message.val()
 					Jungle.insert {
 						parent_id: Session.get('id'),
-						image: $('input#image').val(),
+						user_id: Meteor.userId(),
+						url: $url.val(),
 						name: name,
-						message: $('input#message').val(),
+						message: $message.val(),
 						message_count: 0,
-						ts: Date.parse new Date,
+						ts: Date.parse(new Date),
+						file: @file,
 					}
 					Jungle.update { _id: Session.get('id') }, { $inc: { message_count: 1 } }
-				else
-					Jungle.insert {
-						name: name,
-						message: $('input#message').val(),
-						message_count: 0,
-						ts: Date.parse new Date,
-					}
 
-				$('input#image').val("")
-				$('input#message').val("")
+					$url.val("")
+					$message.val("")
+
+				$('#messages_wrapper').scrollTop(999999)
+
+		'change #attachment': (e) ->
+			@file = e.fpfile
 	}
 
 	Meteor.Router.add {
-		'' : -> Session.set 'id', null
-		'/post/:id' : (id) ->
-			message = Jungle.findOne { _id : id }
-			Session.set 'id', id if message
+		'': -> Session.set('id', null)
+		'/post/:id': (id) ->
+			#message = Jungle.findOne { _id : id }
+			Session.set 'id', id #if message
 	}
 
 	Accounts.ui.config {
@@ -71,19 +76,22 @@ if Meteor.isClient
 	}
 
 if Meteor.isServer
+	Meteor.publish "jungle", (parent_id) ->
+		Jungle.find { $or: [{ parent_id: parent_id }, { _id: parent_id }] }
+
 	Meteor.startup ->
 		if Jungle.find().count() == 0
 			user_id = Accounts.createUser {
-				username: 'dave',
-				email: 'dburles@gmail.com',
-				password: 'password',
+				username: "dave",
+				email: "dburles@gmail.com",
+				password: "password",
 			}
 
 			Jungle.insert {
 				user_id: user_id,
-				name: 'dave',
-				message: 'Hello World!',
+				name: "dave",
+				message: "Hello World!",
 				message_count: 0,
-				ts: Date.parse new Date,
+				ts: Date.parse(new Date),
 			}
 
