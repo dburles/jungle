@@ -2,5 +2,9 @@ friends list + private messages
 profile page listing activity
 
 ***
-SECURE IT
+SECURE IT. create methods
 limit username length!
+setup amazon
+restructure project 
+paginate (infinite scroll?)
+

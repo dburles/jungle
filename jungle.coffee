@@ -1,36 +1,23 @@
-
-#Meteor.autorun ->
-
-#Meteor.subscribe 'jungle', -> 
-#	if Session.get('id')
-#		messages = { parent_id: Session.get('id') }
-
 Jungle = new Meteor.Collection "jungle"
 
 if Meteor.isClient
 	Meteor.startup ->
-		filepicker.setKey("Ay0CJr5oZQi6jI6mzQTbgz")
+		filepicker.setKey "Ay0CJr5oZQi6jI6mzQTbgz"
 
 	Meteor.autorun ->
 		Meteor.subscribe "jungle", Session.get('id')
 
+	#Template.home.top = ->
+
+
 	Template.top.parent = ->
 		Jungle.findOne { _id : Session.get('id') }
 
-	Template.messages.posts = ->
+	Template.messages.messages = ->
 		Jungle.find { _id : { $not: Session.get('id') } }, sort: { ts: -1 }
+	
 	Template.messages.count = ->
 		Jungle.find({ _id : { $not: Session.get('id') } }, sort: { ts: -1 }).count()
-
-	#Template.top.events {
-	#	'click a#gotoparent' : ->
-	#		Session.set 'id', $('a#gotoparent').attr('href')
-	#		$('input#message').focus()
-	#}
-	
-	#Template.messages.events {
-	#	'click a': -> $('input#message').focus()
-	#}
 
 	Template.form.events {
 		'keyup input#message': (e) ->
@@ -47,11 +34,10 @@ if Meteor.isClient
 					Jungle.insert {
 						parent_id: Session.get('id'),
 						user_id: Meteor.userId(),
-						url: $url.val(),
 						name: name,
 						message: $message.val(),
 						message_count: 0,
-						ts: Date.parse(new Date),
+						ts: (new Date).getTime(), # move server side! http://stackoverflow.com/questions/10465673/how-to-use-timestamps-and-preserve-insertion-order-in-meteor
 						file: @file,
 					}
 					Jungle.update { _id: Session.get('id') }, { $inc: { message_count: 1 } }
@@ -84,10 +70,12 @@ if Meteor.isClient
 	}
 
 	Meteor.Router.add {
-		'': -> Session.set('id', null)
+		'': -> 
+			Session.set('id', null)
+			"home"
 		'/post/:id': (id) ->
-			#message = Jungle.findOne { _id : id }
-			Session.set 'id', id #if message
+			Session.set('id', id)
+			"post"
 	}
 
 	Accounts.ui.config {
@@ -114,3 +102,11 @@ if Meteor.isServer
 				ts: Date.parse(new Date),
 			}
 
+	Jungle.allow {
+		insert: ->
+			true
+		update: ->
+			true
+		remove: ->
+			false
+	}

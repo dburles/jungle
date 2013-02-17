@@ -9,54 +9,60 @@
 			<span class="small">(codename) v0.1</span>
 			<span class="small">realtime communication &amp image sharing using recursive relationships</span>
 		</div>
-		{{> top}}
-		{{> messages}}
+		{{renderPage}}
 		{{> footer}}
 	</div>
 </body>
 
+<template name="home">
+	<div id="home">
+		<p>Homepage!</p>
+	</div>
+</template>
+
+<template name="post">
+	{{> top}}
+	{{> messages}}
+</template>
+
 <template name="top">	
-	
-		<div class="shadow round">
-			<div id="nav" class="round">
-				<a id="gotoparent" href="/post/{{parent.parent_id}}">^up</a>
-				<span id="login">{{loginButtons align="right"}}</span>
-			</div>
-			<div class="">
-				<table id="parent">
-					<tr>
-						<td class="count" width="30" valign="top">{{parent.message_count}}</td>
-						<td align="middle">
-							{{#if parent.file}}
-								<img src="{{parent.file.url}}/convert?w=800&fit=crop">
-							{{/if}}
-							<div class="post">
-								<span class="name">{{parent.name}}</span>
-								<span class="message">{{parent.message}}</span>
-							</div>
-						</td>
-						<td align="right"></td>
-					</tr>
-				</table>
-				{{> form}}
-			</div>
+	<div class="shadow round">
+		<div id="nav" class="round">
+			<a id="gotoparent" href="/post/{{parent.parent_id}}">^up</a>
+			<span id="login">{{loginButtons align="right"}}</span>
 		</div>
-	
+		<table id="parent">
+			<tr>
+				<td class="count" width="30" valign="top">{{parent.message_count}}</td>
+				<td align="middle">
+					{{#if parent.file}}
+						<img src="{{parent.file.url}}/convert?w=800&fit=crop">
+					{{/if}}
+					<div class="post">
+						<span class="name">{{parent.name}}</span>
+						<span class="message">{{parent.message}}</span>
+					</div>
+				</td>
+				<td align="right"></td>
+			</tr>
+		</table>
+		{{> form}}
+	</div>	
 </template>
 
 <template name="messages">
 	{{#if count}}
 	<div id="messages_wrapper" class="shadow round">
 		<table id="messages">
-		{{#each posts}}
-			{{> post}}
+		{{#each messages}}
+			{{> message}}
 		{{/each}}
 		</table>
 	</div>
 	{{/if}}
 </template>
 
-<template name="post">
+<template name="message">
 	<tr id="{{_id}}">
 		<td class="count" align="center" width="20">{{message_count}}</td>
 		<td width="70" align="center">
