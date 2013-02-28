@@ -5,7 +5,7 @@ body {
 	font-family: Arial, Helvetica;
 	margin: 10px;
 	height: 100%;
-	background: url('/images/pw_maze_white.png') #DDD;
+	background: url('/images/light_toast.png') #DDD;
 }
 p {
 	line-height: .8em;
@@ -72,9 +72,9 @@ p {
 }
 #nav {
 	width: 100%;
-	background: url('/images/escheresque_ste.png') #333;
+	background: url('/images/jungle.jpg');
 	padding: 10px;
-	font-size: 2em;
+	font-size: 1.6em;
 }
 #nav a#gotoparent {
 	color: #FFF;
@@ -89,7 +89,7 @@ p {
 	margin-right: 0;
 }
 #form {
-	background: url('/images/escheresque_ste.png') #333;
+	background: url('/images/jungle.jpg');
 	padding: 10px;
 }
 #form #attachment {
@@ -101,7 +101,7 @@ p {
 #form #attachment span.io {
 	display: block;
 	color: #FFF;
-	padding: 5px 0 5px 5px;
+	padding: 5px 5px 5px 0;
 }
 #form #attachment span.ready {
 	display: none;
