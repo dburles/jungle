@@ -1,7 +1,10 @@
 Jungle = new Meteor.Collection "jungle"
 
-Meteor.publish "jungle", (parent_id) ->
-	Jungle.find({ $or: [{ parent_id: parent_id }, { _id: parent_id }] }, limit: 100)
+Meteor.publish "jungle", ->
+	Jungle.find {}
+
+#Meteor.publish "jungle", (parent_id) ->
+#	Jungle.find({ $or: [{ parent_id: parent_id }, { _id: parent_id }] }, limit: 100)
 
 #Meteor.publish "jungle": ->
 #	Jungle.find {}

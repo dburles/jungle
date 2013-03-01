@@ -6,19 +6,29 @@ Meteor.startup ->
 	filepicker.setKey "Ay0CJr5oZQi6jI6mzQTbgz"
 
 Meteor.autorun ->
-	Meteor.subscribe "jungle", Session.get('id')
+	Meteor.subscribe "jungle"#, Session.get('id')
+
+$action = {
+	attachment: {
+		show: ->
+			$('#attachment #picker').show()
+			$('#attachment .ready').hide()
+		hide: ->
+			$('#attachment #picker').hide()
+			$('#attachment .ready').show()
+	}
+}
 
 #Template.home.top = ->
-
 
 Template.top.parent = ->
 	Jungle.findOne { _id : Session.get('id') }
 
 Template.messages.messages = ->
-	Jungle.find { _id : { $not: Session.get('id') } }, sort: { ts: -1 }
+	Jungle.find { _id : { $not: Session.get('id') }, parent_id: Session.get('id') }, sort: { ts: -1 }
 
 Template.messages.count = ->
-	Jungle.find({ _id : { $not: Session.get('id') } }, sort: { ts: -1 }).count()
+	Jungle.find({ _id : { $not: Session.get('id') }, parent_id: Session.get('id') }, sort: { ts: -1 }).count()
 
 Template.form.events {
 	'keyup input#message': (e) ->
@@ -46,28 +56,21 @@ Template.form.events {
 
 				$url.val("")
 				$message.val("")
-				$('#attachment #picker').show()
-				$('#attachment .ready').hide()
-
-			#$('#messages_wrapper').scrollTop(999999)
+				$action.attachment.show()
 
 	'click #attachment #picker': ->
 		filepicker.pick {}, 
 			(FPFile) ->
 				@file = FPFile 
 				#console.log(@file)
-				$('#form #attachment #picker').hide()
-				$('#attachment .ready').show()
+				$action.attachment.hide()
 			(FPError) ->
+				
 	'click #attachment span.ready a.remove': ->
 		#delete file
 		filepicker.remove(@file)
-		$('#attachment #picker').show()
-		$('#attachment .ready').hide()
+		$action.attachment.show()
 		false
-
-	#'change #attachment': (e) ->
-	#	@file = e.fpfile
 }
 
 Meteor.Router.add {
