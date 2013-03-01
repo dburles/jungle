@@ -3,8 +3,6 @@ html {
 }
 body {
 	font-family: Arial, Helvetica;
-	margin: 10px;
-	height: 100%;
 	background: url('/images/light_toast.png') #DDD;
 }
 p {
@@ -39,15 +37,12 @@ p {
 #wrapper {
 	max-width: 1000px;
 	margin: auto;
-	position: relative;
-	min-height: 100%;
 }
 .round {
 	webkit-border-radius: 4px;
 	-moz-border-radius: 4px;
 	border-radius: 4px;
 }
-
 .breath {
 	padding: 2px 2px 0 2px;
 	background: #FFF;
