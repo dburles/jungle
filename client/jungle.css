@@ -41,7 +41,6 @@ p {
 	margin: auto;
 	position: relative;
 	min-height: 100%;
-	margin-top: 15px;
 }
 .round {
 	webkit-border-radius: 4px;

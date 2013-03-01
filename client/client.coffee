@@ -1,5 +1,7 @@
 Jungle = new Meteor.Collection "jungle"
 
+Session.setDefault('id', null)
+
 Meteor.startup ->
 	filepicker.setKey "Ay0CJr5oZQi6jI6mzQTbgz"
 

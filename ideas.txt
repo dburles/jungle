@@ -2,9 +2,18 @@ friends list + private messages
 profile page listing activity
 
 ***
-SECURE IT. create methods
-limit username length!
-setup amazon
-restructure project 
-paginate (infinite scroll?)
+now
+	homepage, subscriptions
+	SECURE IT. create methods
+	limit username length!
 
+future
+	setup amazon for image hosting
+	restructure project 
+	paginate (infinite scroll?)
+
+
+
+publish states simply what data should be available for the client to query on
+
+subscribe lets the client see it
