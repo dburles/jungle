@@ -22,28 +22,32 @@ $action = {
 
 #Template.home.top = ->
 
-Template.profile.user = ->
-	Meteor.users.findOne { username: Session.get('username') }
 
-# Y U NO WORK??
-Template.profile.messages = ->
-	user = Meteor.users.findOne { username: Session.get('username') }
-	if user
-		Jungle.find { user_id: user._id }
 
-Template.profile.count = ->
-	user = Meteor.users.findOne { username: Session.get('username') }
-	if user
-		Jungle.find({ user_id: user._id }).count()
+if Session.get('username')
+	Template.profile.user = ->
+		Meteor.users.findOne { username: Session.get('username') }
 
-Template.top.parent = ->
-	Jungle.findOne { _id : Session.get('id') }
+	# Y U NO WORK??
+	Template.profile.messages = ->
+		user = Meteor.users.findOne { username: Session.get('username') }
+		if user
+			Jungle.find { user_id: user._id }
 
-Template.messages.messages = ->
-	Jungle.find { _id : { $not: Session.get('id') }, parent_id: Session.get('id') }, sort: { ts: -1 }
+	Template.profile.count = ->
+		user = Meteor.users.findOne { username: Session.get('username') }
+		if user
+			Jungle.find({ user_id: user._id }).count()
 
-Template.messages.count = ->
-	Jungle.find({ _id : { $not: Session.get('id') }, parent_id: Session.get('id') }, sort: { ts: -1 }).count()
+if Session.get('id')
+	Template.messages.messages = ->
+		Jungle.find { _id : { $not: Session.get('id') }, parent_id: Session.get('id') }, sort: { ts: -1 }
+
+	Template.messages.count = ->
+		Jungle.find({ _id : { $not: Session.get('id') }, parent_id: Session.get('id') }, sort: { ts: -1 }).count()
+
+	Template.top.parent = ->
+		Jungle.findOne { _id : Session.get('id') }
 
 Template.form.events {
 	'keyup input#message': (e) ->

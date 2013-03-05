@@ -1,11 +1,14 @@
-friends list + private messages
-profile page listing activity
+
 
 ***
 now
+	add a button on each message so a user can like fav it, so it gets like repinned/posted whatever on their own profile, like tumblr
 	homepage, subscriptions
 	SECURE IT. create methods
 	limit username length!
+	friends list + private messages
+	profile page listing activity
+
 
 future
 	setup amazon for image hosting
