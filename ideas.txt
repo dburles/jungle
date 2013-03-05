@@ -10,6 +10,9 @@ now
 	profile page listing activity
 
 
+	view profile, save(pin), private message, add to friends
+
+
 future
 	setup amazon for image hosting
 	restructure project 

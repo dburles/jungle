@@ -22,36 +22,46 @@ $action = {
 
 #Template.home.top = ->
 
+Template.profile.user = ->
+	Meteor.users.findOne { username: Session.get('username') }
+
+# # Y U NO WORK??
+# Template.profile.messages = ->
+# 	user = Meteor.users.findOne { username: Session.get('username') }
+# 	if user
+# 		Jungle.find { user_id: user._id }
+
+# Template.profile.count = ->
+# 	user = Meteor.users.findOne { username: Session.get('username') }
+# 	if user
+# 		Jungle.find({ user_id: user._id }).count()
+
+Template.messages.messages = ->
+	Jungle.find { _id : { $not: Session.get('id') }, parent_id: Session.get('id') }, sort: { ts: -1 }
+
+Template.messages.count = ->
+	Jungle.find({ _id : { $not: Session.get('id') }, parent_id: Session.get('id') }, sort: { ts: -1 }).count()
+
+Template.top.parent = ->
+	Jungle.findOne { _id : Session.get('id') }
+
+Template.messages.events {
+	'mouseenter .stuff': (e) ->
+		console.log(e)
+		$(e.target).parent().css('background', '#DDD')
+	'mouseleave .stuff': (e) ->
+		$(e.target).parent().css('background', '#FFF')
+	'click .stuff': (e) ->
+		$(e.target).parent().find('td.message').css('background', 'pink')
+		$(e.target).parent().find('td.message').html('<a href="#">view profile</a>, <a href="#">save message to profile</a>, <a href="#">private message</a>, <a href="#">add to friends</a>')
 
 
-if Session.get('username')
-	Template.profile.user = ->
-		Meteor.users.findOne { username: Session.get('username') }
-
-	# Y U NO WORK??
-	Template.profile.messages = ->
-		user = Meteor.users.findOne { username: Session.get('username') }
-		if user
-			Jungle.find { user_id: user._id }
-
-	Template.profile.count = ->
-		user = Meteor.users.findOne { username: Session.get('username') }
-		if user
-			Jungle.find({ user_id: user._id }).count()
-
-if Session.get('id')
-	Template.messages.messages = ->
-		Jungle.find { _id : { $not: Session.get('id') }, parent_id: Session.get('id') }, sort: { ts: -1 }
-
-	Template.messages.count = ->
-		Jungle.find({ _id : { $not: Session.get('id') }, parent_id: Session.get('id') }, sort: { ts: -1 }).count()
-
-	Template.top.parent = ->
-		Jungle.findOne { _id : Session.get('id') }
+}
 
 Template.form.events {
 	'keyup input#message': (e) ->
 		if e.which is 13
+			@file = null
 			$url = $('input#url')
 			$message = $('input#message')
 
@@ -71,7 +81,6 @@ Template.form.events {
 					file: @file,
 				}
 				Jungle.update { _id: Session.get('id') }, { $inc: { message_count: 1 } }
-				@file = null
 
 				$url.val("")
 				$message.val("")
