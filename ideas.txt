@@ -3,6 +3,8 @@ now
 
 	trying to add user profiles, it's broken..
 
+	how to delete images that are never posted, as they are stored before posting
+
 	SECURE IT. create methods
 	use sessions for showing the image is ready to be posted
 	do something with the homepage

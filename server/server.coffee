@@ -1,5 +1,3 @@
-Jungle = new Meteor.Collection "jungle"
-
 Meteor.publish "jungle", ->
 	Jungle.find {}
 
@@ -25,11 +23,3 @@ Meteor.startup ->
 			ts: Date.parse(new Date),
 		}
 
-Jungle.allow {
-	insert: ->
-		true
-	update: ->
-		true
-	remove: ->
-		false
-}

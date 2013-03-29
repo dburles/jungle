@@ -64,6 +64,9 @@ p {
 #messages a {
 	color: #777;
 }
+#messages .message {
+  padding-left: 10px;
+}
 #nav {
 	width: 100%;
 	background: url('/images/jungle.jpg');

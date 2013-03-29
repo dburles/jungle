@@ -1,12 +1,10 @@
-Jungle = new Meteor.Collection "jungle"
-
-Session.setDefault('id', null)
+Session.setDefault 'id', null
 
 Meteor.startup ->
 	filepicker.setKey "Ay0CJr5oZQi6jI6mzQTbgz"
 
 Meteor.autorun ->
-	Meteor.subscribe "jungle"#, Session.get('id')
+	Meteor.subscribe "jungle"
 
 $action = {
 	attachment: {
@@ -75,10 +73,10 @@ Template.form.events {
 
 Meteor.Router.add {
 	'': -> 
-		Session.set('id', null)
+		Session.set 'id', null
 		"home"
 	'/post/:id': (id) ->
-		Session.set('id', id)
+		Session.set 'id', id
 		"post"
 }
 
