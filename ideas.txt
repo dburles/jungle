@@ -1,15 +1,25 @@
-friends list + private messages
-profile page listing activity
-
 ***
 now
-	homepage, subscriptions
+
+	trying to add user profiles, it's broken..
+
 	SECURE IT. create methods
-	limit username length!
+	use sessions for showing the image is ready to be posted
+	do something with the homepage
+		
+	add a button on each message so a user can like fav it, so it gets like repinned/posted whatever on their own profile, like tumblr
+	homepage, subscriptions
+	
+	limit username length!?
+	friends list + private messages
+	profile page listing activity
+
+
+	view profile, save(pin), private message, add to friends
+
 
 future
 	setup amazon for image hosting
-	restructure project 
 	paginate (infinite scroll?)
 
 
