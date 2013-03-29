@@ -7,6 +7,7 @@
 		<div id="logo">
 			<span>JUNGLE</span>
 			<span class="small">(codename) v0.1</span>
+			{{#comment}}<span class="small">realtime communication &amp image sharing using recursive relationships</span>{{/comment}}
 		</div>
 		{{renderPage}}
 		{{> footer}}
@@ -24,43 +25,35 @@
 	{{> messages}}
 </template>
 
-<template name="profile">
-	<p>profile</p>
-	{{user.username}}
-	{{> messages}}
-</template>
-
-<template name="top">
-	{{#with parent}}
+<template name="top">	
 	<div class="shadow round">
 		<div id="nav" class="round">
-			<a id="gotoparent" href="/post/{{parent_id}}">^up</a>
+			<a id="gotoparent" href="/post/{{parent.parent_id}}">^up</a>
 			<span id="login">{{loginButtons align="right"}}</span>
 		</div>
 		<table id="parent">
 			<tr>
-				<td class="count" width="30" valign="top">{{message_count}}</td>
+				<td class="count" width="30" valign="top">{{parent.message_count}}</td>
 				<td align="middle">
-					{{#if file}}
-						<img src="{{file.url}}/convert?w=800&fit=max">
+					{{#if parent.file}}
+						<img src="{{parent.file.url}}/convert?w=800&fit=max">
 					{{/if}}
 					<div class="post">
-						<span class="name">{{name}}</span>
-						<span class="message">{{message}}</span>
+						<span class="name">{{parent.name}}</span>
+						<span class="message">{{parent.message}}</span>
 					</div>
 				</td>
 				<td align="right"></td>
 			</tr>
 		</table>
 		{{> form}}
-	</div>
-	{{/with}}
+	</div>	
 </template>
 
 <template name="messages">
 	{{#if count}}
 	<div id="messages_wrapper" class="shadow round">
-		<table id="messages" cellspacing="0" width="100%">
+		<table id="messages">
 		{{#each messages}}
 			{{> message}}
 		{{/each}}
@@ -81,7 +74,6 @@
 		</td>
 		<td class="name"><a href="/post/{{_id}}">{{name}}</a></td>
 		<td class="message">{{message}}</td>
-		<td align="right" class="stuff">&gt;</td>
 	</tr>
 </template>
 

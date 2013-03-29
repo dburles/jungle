@@ -1,7 +1,6 @@
 Jungle = new Meteor.Collection "jungle"
 
-Session.setDefault 'id', null
-Session.setDefault 'username', null
+Session.setDefault('id', null)
 
 Meteor.startup ->
 	filepicker.setKey "Ay0CJr5oZQi6jI6mzQTbgz"
@@ -22,21 +21,8 @@ $action = {
 
 #Template.home.top = ->
 
-Template.profile.user = ->
-	Meteor.users.findOne { username: Session.get('username') }
-
-# Y U NO WORK??
-Template.profile.messages = ->
-	user = Meteor.users.findOne { username: Session.get('username') }
-	if user
-		Jungle.find { user_id: user._id }
-
-Template.profile.count = ->
-	user = Meteor.users.findOne { username: Session.get('username') }
-	if user
-		Jungle.find({ user_id: user._id }).count()
-
-# ^^^
+Template.top.parent = ->
+	Jungle.findOne { _id : Session.get('id') }
 
 Template.messages.messages = ->
 	Jungle.find { _id : { $not: Session.get('id') }, parent_id: Session.get('id') }, sort: { ts: -1 }
@@ -44,13 +30,9 @@ Template.messages.messages = ->
 Template.messages.count = ->
 	Jungle.find({ _id : { $not: Session.get('id') }, parent_id: Session.get('id') }, sort: { ts: -1 }).count()
 
-Template.top.parent = ->
-	Jungle.findOne { _id : Session.get('id') }
-
 Template.form.events {
 	'keyup input#message': (e) ->
 		if e.which is 13
-			@file = null
 			$url = $('input#url')
 			$message = $('input#message')
 
@@ -70,6 +52,7 @@ Template.form.events {
 					file: @file,
 				}
 				Jungle.update { _id: Session.get('id') }, { $inc: { message_count: 1 } }
+				@file = null
 
 				$url.val("")
 				$message.val("")
@@ -92,14 +75,11 @@ Template.form.events {
 
 Meteor.Router.add {
 	'': -> 
+		Session.set('id', null)
 		"home"
 	'/post/:id': (id) ->
-		Session.set 'id', id
+		Session.set('id', id)
 		"post"
-	'/profile/:username': (username) ->
-		Session.set 'id', null
-		Session.set 'username', username
-		"profile"
 }
 
 Accounts.ui.config {
