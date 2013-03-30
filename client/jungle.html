@@ -30,21 +30,23 @@
 			<a id="gotoparent" href="/post/{{parent.parent_id}}">^up</a>
 			<span id="login">{{loginButtons align="right"}}</span>
 		</div>
+		{{#with parent}}
 		<table id="parent">
 			<tr>
-				<td class="count" width="30" valign="top">{{parent.message_count}}</td>
+				<td class="count" width="30" valign="top">{{message_count}}</td>
 				<td align="middle">
-					{{#if parent.file}}
-						<img src="{{parent.file.url}}/convert?w=800&fit=max">
+					{{#if file}}
+						<img src="{{file.url}}/convert?w=800&fit=max">
 					{{/if}}
 					<div class="post">
-						<span class="name">{{parent.name}}</span>
-						<span class="message">{{parent.message}}</span>
+						<span class="name">{{name}}</span>
+						<span class="message">{{message}}</span>
 					</div>
 				</td>
 				<td align="right"></td>
 			</tr>
 		</table>
+		{{/with}}
 		{{> form}}
 	</div>	
 </template>

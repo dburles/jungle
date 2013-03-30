@@ -1,4 +1,5 @@
 Session.setDefault 'id', null
+Session.setDefault 'username', null
 
 Meteor.startup ->
 	filepicker.setKey "Ay0CJr5oZQi6jI6mzQTbgz"
@@ -31,36 +32,33 @@ Template.messages.count = ->
 Template.form.events {
 	'keyup input#message': (e) ->
 		if e.which is 13
-			$url = $('input#url')
-			$message = $('input#message')
+			message = $('input#message')
 
 			if Meteor.user()
 				name = Meteor.user().username
 			else
 				name = "Anonymous"
 		
-			if $message.val()
+			if message.val()
 				Jungle.insert {
 					parent_id: Session.get('id'),
 					user_id: Meteor.userId(),
-					name: name,
-					message: $message.val(),
+					name: name, # reference user_id instead, requires more lookups though, remove anonymous
+					message: message.val(),
 					message_count: 0,
 					ts: (new Date).getTime(), # move server side! http://stackoverflow.com/questions/10465673/how-to-use-timestamps-and-preserve-insertion-order-in-meteor
 					file: @file,
 				}
 				Jungle.update { _id: Session.get('id') }, { $inc: { message_count: 1 } }
+				
 				@file = null
-
-				$url.val("")
-				$message.val("")
+				message.val("")
 				$action.attachment.show()
 
 	'click #attachment #picker': ->
 		filepicker.pick {}, 
 			(FPFile) ->
-				@file = FPFile 
-				#console.log(@file)
+				@file = FPFile
 				$action.attachment.hide()
 			(FPError) ->
 				
