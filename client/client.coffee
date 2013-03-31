@@ -27,6 +27,7 @@ Template.messages.messages = ->
 
 Template.messages.count = ->
 	Jungle.find({ _id : { $not: Session.get('id') }, parent_id: Session.get('id') }, sort: { ts: -1 }).count()
+
 Template.form.events {
 	'keyup input#message': (e) ->
 		if e.which is 13
