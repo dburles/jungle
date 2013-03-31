@@ -1,5 +1,6 @@
 Session.setDefault 'id', null
 Session.setDefault 'username', null
+Session.setDefault 'file', null
 
 Meteor.startup ->
 	filepicker.setKey "Ay0CJr5oZQi6jI6mzQTbgz"
@@ -18,8 +19,6 @@ $action = {
 	}
 }
 
-#Template.home.top = ->
-
 Template.top.parent = ->
 	Jungle.findOne { _id : Session.get('id') }
 
@@ -28,7 +27,6 @@ Template.messages.messages = ->
 
 Template.messages.count = ->
 	Jungle.find({ _id : { $not: Session.get('id') }, parent_id: Session.get('id') }, sort: { ts: -1 }).count()
-
 Template.form.events {
 	'keyup input#message': (e) ->
 		if e.which is 13
@@ -47,23 +45,22 @@ Template.form.events {
 					message: message.val(),
 					message_count: 0,
 					ts: (new Date).getTime(), # move server side! http://stackoverflow.com/questions/10465673/how-to-use-timestamps-and-preserve-insertion-order-in-meteor
-					file: @file,
+					file: Session.get('file'),
 				}
 				Jungle.update { _id: Session.get('id') }, { $inc: { message_count: 1 } }
 				
-				@file = null
+				Session.set 'file', null
 				message.val("")
 				$action.attachment.show()
 
 	'click #attachment #picker': ->
 		filepicker.pick {}, 
 			(FPFile) ->
-				@file = FPFile
+				Session.set 'file', FPFile
 				$action.attachment.hide()
 			(FPError) ->
 				
 	'click #attachment span.ready a.remove': ->
-		#delete file
 		filepicker.remove(@file)
 		$action.attachment.show()
 		false

@@ -1,12 +1,12 @@
 ***
 now
-
-	trying to add user profiles, it's broken..
-
-	how to delete images that are never posted, as they are stored before posting
-
-	SECURE IT. create methods
+	SECURE IT. create methods for inserts
 	use sessions for showing the image is ready to be posted
+	how to delete images that are never posted, as they are stored before posting
+	rebuild front end code
+
+	add user profiles
+
 	do something with the homepage
 		
 	add a button on each message so a user can like fav it, so it gets like repinned/posted whatever on their own profile, like tumblr
@@ -15,7 +15,6 @@ now
 	limit username length!?
 	friends list + private messages
 	profile page listing activity
-
 
 	view profile, save(pin), private message, add to friends
 
@@ -27,5 +26,4 @@ future
 
 
 publish states simply what data should be available for the client to query on
-
 subscribe lets the client see it
