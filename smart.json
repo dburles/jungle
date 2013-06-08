@@ -2,7 +2,6 @@
   "packages": {
     "router": {},
     "accounts-ui-bootstrap-dropdown": {},
-    "presence": {},
-    "observatory": {}
+    "presence": {}
   }
 }
