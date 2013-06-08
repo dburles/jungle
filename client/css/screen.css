@@ -1,0 +1,7 @@
+table#messages td.image img {
+	min-width: 50px;
+	min-height: 50px;
+}
+.hero-unit {
+	padding: 30px;
+}

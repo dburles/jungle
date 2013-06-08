@@ -3,7 +3,6 @@
   "dependencies": {
     "basePackages": {
       "accounts-ui-bootstrap-dropdown": {},
-      "filepicker": {},
       "router": {},
       "presence": {}
     },
@@ -12,11 +11,6 @@
         "git": "https://github.com/erobit/meteor-accounts-ui-bootstrap-dropdown.git",
         "tag": "v0.1.0",
         "commit": "e66558aaa4dc0d85c6ddb63bd2289b38c2b793f6"
-      },
-      "filepicker": {
-        "git": "https://github.com/Filepicker/meteor.git",
-        "tag": "v0.3.0",
-        "commit": "dcb6f3779e5fc105520ba06b0392e3a79c73a7e6"
       },
       "router": {
         "git": "https://github.com/tmeasday/meteor-router.git",

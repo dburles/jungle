@@ -9,6 +9,7 @@ Session.setDefault 'fileReady', null
 
 Meteor.startup ->
 	filepicker.setKey 'Ay0CJr5oZQi6jI6mzQTbgz'
+	console.log 'setting key'
 
 Meteor.autorun ->
 	Meteor.subscribe 'jungle'

@@ -65,14 +65,14 @@
 		<a id="picker" class="btn pull-left btn-primary">+ Image</a>
 	{{/if}}
 	<form>
-		<input name="message" type="text" class="input-xxlarge input-block-level">
+		<input name="message" type="text" class="input-xxlarge input-block-level" placeholder="Type a message...">
 		<!-- <input type="submit" value="">  -->
 	</form>
 </template>
 
 <template name="messages">
 	{{#if count}}
-	<table class="table">
+	<table id="messages" class="table">
 		<tbody>
 		{{#each messages}}
 			{{> message}}
@@ -85,7 +85,7 @@
 <template name="message">
 	<tr>
 		<td>{{messageCount}}</td>
-		<td>
+		<td class="image">
 			{{#if file}}
 			<a href="{{postPath this}}">
 				<img src="{{file.url}}/convert?w=50&h=50&fit=crop" width="50" height="50">
@@ -94,6 +94,6 @@
 		</td>
 		<td><a href="{{postPath this}}">{{username}}</a></td>
 		<td>{{message}}</td>
-		<td align="right">&gt;</td>
+		<td align="right"><span class="pull-right">&gt;</span></td>
 	</tr>
 </template>
