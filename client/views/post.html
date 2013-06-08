@@ -1,10 +1,10 @@
 <template name="post">
 	<div class="container-fluid">
 		<div class="row-fluid">
-			<div class="span3">
+			<div class="span2">
 				{{> userList}}
 			</div>
-			<div class="span9">
+			<div class="span6">
 				<ul class="breadcrumb">
 					<li>
 						<a href="{{postPath post.parentId}}">Up</a>
@@ -12,6 +12,8 @@
 					</li>
 				</ul>
 				{{> postContent post}}
+			</div>
+			<div class="span4">
 				{{> messageForm}}
 				{{> messages}}
 			</div>
@@ -41,6 +43,18 @@
 		{{/if}}
 		<p>{{message}}</p>
 		<h3>{{username}}</h3>
+	</div>
+</template>
+
+<template name="postContent_experiment">
+	<div class="media">
+		{{#if file}}
+			<img class="media-object" src="{{file.url}}/convert?w=800&fit=max">
+		{{/if}}
+		<div class="media-body">
+			<p>{{message}}</p>
+			<h4 class="media-heading">{{username}}</h4>
+		</div>
 	</div>
 </template>
 

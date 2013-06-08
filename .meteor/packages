@@ -5,10 +5,7 @@
 
 preserve-inputs
 coffeescript
-jquery
-accounts-password
-accounts-base
 underscore
-router
-accounts-ui-bootstrap-dropdown
-presence
+accounts-password
+jquery
+bootstrap
