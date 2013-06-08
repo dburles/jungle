@@ -1,17 +1,19 @@
 Template.userList.helpers {
 	users: ->
-		Meteor.presences.find { 'state.id': Session.get 'id' }, sort: { 'state.username': 1 }
+		Meteor.presences.find { 'state.postId': Session.get 'postId' }, sort: { 'state.username': 1 }
+	isUser: ->
+		Meteor.userId() is this.userId
 }
 Template.post.helpers {
 	post: ->
-		Jungle.findOne Session.get 'id'
+		Jungle.findOne Session.get 'postId'
 }
 Template.messages.helpers {
 	messages: ->
-		Jungle.find { _id: { $not: Session.get 'id' }, parentId: Session.get 'id' }, sort: { ts: -1 }
+		Jungle.find { _id: { $not: Session.get 'postId' }, parentId: Session.get 'postId' }, sort: { ts: -1 }
 	
 	count: ->
-		Jungle.find({ _id: { $not: Session.get 'id' }, parentId: Session.get 'id' }, sort: { ts: -1 }).count()
+		Jungle.find({ _id: { $not: Session.get 'postId' }, parentId: Session.get 'postId' }, sort: { ts: -1 }).count()
 }
 Template.messageForm.helpers {
 	fileReady: ->
@@ -24,7 +26,7 @@ Template.messageForm.events {
 
 		if message.value
 			Meteor.call 'addMessage', {
-				parentId: Session.get 'id'
+				parentId: Session.get 'postId'
 				message: message.value
 				file: Session.get 'file'
 			}

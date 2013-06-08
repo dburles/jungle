@@ -22,11 +22,9 @@
 <template name="userList">
 	<ul class="nav nav-pills nav-stacked">
 		{{#each users}}
-		{{#with state}}
-		<li class="active">
-			<a href="#">{{username}}</a> 
-		</li>
-		{{/with}}
+			<li class="{{#if isUser}}active{{/if}}">
+				<a>{{state.username}}</a> 
+			</li>
 		{{/each}}
 	</ul>
 	{{#comment}}

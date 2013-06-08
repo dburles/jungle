@@ -13,5 +13,3 @@ Meteor.startup ->
 			messageCount: 0,
 			ts: (new Date).getTime(),
 		}
-
-

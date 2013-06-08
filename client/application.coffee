@@ -2,7 +2,7 @@ Accounts.ui.config {
 	passwordSignupFields: 'USERNAME_AND_EMAIL'
 }
 
-Session.setDefault 'id', null
+Session.setDefault 'postId', null
 Session.setDefault 'username', null
 Session.setDefault 'file', null
 Session.setDefault 'fileReady', null
