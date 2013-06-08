@@ -2,22 +2,45 @@
   "meteor": {
     "git": "https://github.com/meteor/meteor.git",
     "branch": "master",
-    "commit": "f07715dc70de16a7aab84e56ab0c6cbd9c1f9dc6"
+    "commit": "5d736d4bf0448c7db1f9b47124dfafc34a9631bb"
   },
   "dependencies": {
     "basePackages": {
-      "router": {}
+      "router": {},
+      "accounts-ui-bootstrap-dropdown": {},
+      "presence": {},
+      "observatory": {}
     },
     "packages": {
       "router": {
         "git": "https://github.com/tmeasday/meteor-router.git",
-        "tag": "v0.4.3",
-        "commit": "0691a6e2c4c249ce7d00cd6dc7ad27e1c7330a31"
+        "tag": "v0.5.1",
+        "commit": "32e377c7703bb119acccc859fc7296882903cbe7"
+      },
+      "accounts-ui-bootstrap-dropdown": {
+        "git": "https://github.com/erobit/meteor-accounts-ui-bootstrap-dropdown.git",
+        "tag": "v0.1.0",
+        "commit": "e66558aaa4dc0d85c6ddb63bd2289b38c2b793f6"
+      },
+      "presence": {
+        "git": "https://github.com/tmeasday/meteor-presence.git",
+        "tag": "v0.2.0",
+        "commit": "cb103275ba67e524bf3a9cce4ff0b36f03959d1b"
+      },
+      "observatory": {
+        "git": "https://github.com/jhoxray/observatory.git",
+        "tag": "v0.2.1",
+        "commit": "3a3302c086fc9e9c59adf9dfc01e88d746f6c501"
       },
       "page-js-ie-support": {
         "git": "https://github.com/tmeasday/meteor-page-js-ie-support.git",
         "tag": "v1.3.5",
         "commit": "b99ed8380aefd10b2afc8f18d9eed4dd0d8ea9cb"
+      },
+      "observatory-apollo": {
+        "git": "https://github.com/superstringsoftware/observatory-apollo.git",
+        "branch": "master",
+        "commit": "b754bb265ef3df07a406f2b342a169e951e6caee"
       }
     }
   }
