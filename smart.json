@@ -1,7 +1,6 @@
 {
   "packages": {
     "accounts-ui-bootstrap-dropdown": {},
-    "filepicker": {},
     "router": {},
     "presence": {}
   }
