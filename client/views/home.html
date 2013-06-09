@@ -1,3 +1,6 @@
 <template name="home">
-	<h1>Home</h1>
+	{{#with mainPost}}}
+		<h1>Home</h1>
+		<a href="{{postPath this}}">{{message}}</a>
+	{{/with}}
 </template>
