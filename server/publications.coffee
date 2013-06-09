@@ -9,12 +9,9 @@ Meteor.publish 'userPresence', ->
 	Meteor.presences.find filter, {fields: {state: true, userId: true}}
 
 
-Meteor.publish 'jungle', ->
-	Jungle.find {}
+# Meteor.publish 'jungle', ->
+# 	Jungle.find {}
 
 
-#Meteor.publish "jungle", (parent_id) ->
-#	Jungle.find({ $or: [{ parent_id: parent_id }, { _id: parent_id }] }, limit: 100)
-
-#Meteor.publish "jungle": ->
-#	Jungle.find {}
+Meteor.publish 'jungle', (parentId) ->
+	Jungle.find { $or: [{ parentId: parentId }, { _id: parentId }] }, limit: 100

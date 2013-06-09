@@ -1,4 +1,5 @@
 now
+	*fix subscriptions, stop sending the entire collection to the user
 	add friends and see what post they are viewing and their online/offline status
 	SECURE IT
 	*create methods for inserts

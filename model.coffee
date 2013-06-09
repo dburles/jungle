@@ -1,4 +1,5 @@
 @Jungle = new Meteor.Collection 'jungle'
+@Friends = new Meteor.Collection 'friends'
 
 Jungle.allow {
 	insert: ->
@@ -7,6 +8,14 @@ Jungle.allow {
 		true
 	remove: ->
 		false
+}
+Friends.allow {
+	insert: ->
+		true
+	update: ->
+		true
+	remove: ->
+		true
 }
 
 Meteor.methods {
@@ -20,4 +29,12 @@ Meteor.methods {
 
 		Jungle.insert data
 		Jungle.update { _id: attrs.parentId }, { $inc: { messageCount: 1 } }
+	
+	addFriend: (attrs) ->
+		data = _.extend(_.pick(attrs, 'friendId'), {
+			userId: Meteor.userId()
+			ts: (new Date).getTime()
+		})
+
+		Friends.insert data	
 }
