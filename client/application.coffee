@@ -10,7 +10,7 @@ Session.setDefault 'fileReady', null
 Meteor.startup ->
 	filepicker.setKey 'Ay0CJr5oZQi6jI6mzQTbgz'
 
-Meteor.autorun ->
+Deps.autorun ->
 	Meteor.subscribe 'jungle', Session.get 'postId'
 	Meteor.subscribe 'userPresence'
 	

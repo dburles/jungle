@@ -34,7 +34,7 @@ Template.messageForm.events {
 			event.target.reset()
 
 	'click a#picker': ->
-		filepicker.pick {}, 
+		filepicker.pick {},
 			(FPFile) ->
 				Session.set 'file', FPFile
 			(FPError) ->

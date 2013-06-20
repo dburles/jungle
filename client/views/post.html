@@ -59,14 +59,13 @@
 </template>
 
 <template name="messageForm">
-	{{#if fileReady}}
-		<p>File Ready! <a id="removeFile">[ Remove? ]</a></p>
-	{{else}}
-		<a id="picker" class="btn pull-left btn-primary">+ Image</a>
-	{{/if}}
-	<form>
+	<form class="messageForm">
+		{{#if fileReady}}
+			<span class="action"><p>File Ready! <a id="removeFile">[ Remove? ]</a></p></span>
+		{{else}}
+			<span class="action"><a id="picker" class="btn pull-left btn-primary">+&nbsp;Image</a></span>
+		{{/if}}
 		<input name="message" type="text" class="input-xxlarge input-block-level" placeholder="Type a message...">
-		<!-- <input type="submit" value="">  -->
 	</form>
 </template>
 

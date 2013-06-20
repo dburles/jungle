@@ -5,3 +5,12 @@ table#messages td.image img {
 .hero-unit {
 	padding: 30px;
 }
+a {
+	cursor: pointer;
+}
+.messageForm span.action {
+	width: 20%;
+}
+.messageForm input {
+	width: 80%;
+}
