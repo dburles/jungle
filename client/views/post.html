@@ -25,9 +25,14 @@
 	<ul class="nav nav-pills nav-stacked">
 		{{#each users}}
 			<li class="{{#if isUser}}active{{/if}}">
-				<a>{{state.username}}</a> 
+				<a>{{username}}</a> 
 			</li>
 		{{/each}}
+		{{#if hasAnonymousUsers}}
+			<li>
+				<a>Anonymous +{{anonymousCount}}</a>
+			</li>
+		{{/if}}
 	</ul>
 	{{#comment}}
 	<div class="well">

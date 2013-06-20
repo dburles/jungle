@@ -13,6 +13,7 @@ Meteor.startup ->
 Deps.autorun ->
 	Meteor.subscribe 'jungle', Session.get 'postId'
 	Meteor.subscribe 'userPresence'
+	Meteor.subscribe 'directory', Session.get 'postId'
 	
 	if Meteor.user()
 		Meteor.subscribe 'friends', Meteor.userId()

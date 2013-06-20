@@ -1,24 +1,37 @@
 Template.userList.helpers {
 	users: ->
-		Meteor.presences.find { 'state.postId': Session.get 'postId' }, sort: { 'state.username': 1 }
+		# presences = Meteor.presences.find { 'state.postId': Session.get 'postId' }, sort: { 'state.username': 1 }
+		# Meteor.users.find { _id: {$in: presences.map (p) -> p.userId} }
+		Meteor.users.find {}, sort: { username: 1 }
+
+	anonymousCount: ->
+		Meteor.presences.find({ 'state.postId': Session.get 'postId', userId: { $exists: false }}).count()
+
+	hasAnonymousUsers: ->
+		Meteor.presences.find({ 'state.postId': Session.get 'postId', userId: { $exists: false }}).count() > 0
+
 	isUser: ->
-		Meteor.userId() is this.userId
+		Meteor.userId() is this._id
 }
+
 Template.post.helpers {
 	post: ->
 		Jungle.findOne Session.get 'postId'
 }
+
 Template.messages.helpers {
 	messages: ->
 		Jungle.find { _id: { $not: Session.get 'postId' }, parentId: Session.get 'postId' }, sort: { ts: -1 }
 	
 	count: ->
-		Jungle.find({ _id: { $not: Session.get 'postId' }, parentId: Session.get 'postId' }, sort: { ts: -1 }).count()
+		Jungle.find({ _id: { $not: Session.get 'postId' }, parentId: Session.get 'postId' }).count()
 }
+
 Template.messageForm.helpers {
 	fileReady: ->
 		Session.get 'file'
 }
+
 Template.messageForm.events {
 	'submit form': (event, template) ->
 		event.preventDefault()
@@ -26,6 +39,7 @@ Template.messageForm.events {
 
 		if message.value
 			Meteor.call 'addMessage', {
+				_id: Random.id() # fix for client/server id bug
 				parentId: Session.get 'postId'
 				message: message.value
 				file: Session.get 'file'

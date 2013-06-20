@@ -20,7 +20,7 @@ Friends.allow {
 
 Meteor.methods {
 	addMessage: (attrs) ->
-		data = _.extend(_.pick(attrs, 'parentId', 'message', 'file'), {
+		data = _.extend(_.pick(attrs, '_id', 'parentId', 'message', 'file'), {
 			userId: Meteor.userId()
 			username: Meteor.presences.findOne({ userId: Meteor.userId() }).state.username
 			messageCount: 0

@@ -6,7 +6,7 @@ Meteor.publish 'userPresence', ->
 
 	# ProTip: unless you need it, don't send lastSeen down as it'll make your 
 	# templates constantly re-render (and use bandwidth)
-	Meteor.presences.find filter, {fields: {state: true, userId: true}}
+	Meteor.presences.find filter, { fields: { state: true, userId: true }}
 
 
 # Meteor.publish 'jungle', ->
@@ -15,3 +15,7 @@ Meteor.publish 'userPresence', ->
 
 Meteor.publish 'jungle', (parentId) ->
 	Jungle.find { $or: [{ parentId: parentId }, { _id: parentId }] }, limit: 100
+
+Meteor.publish 'directory', (postId) ->
+	presences = Meteor.presences.find { 'state.postId': postId }
+	Meteor.users.find { _id: { $in: presences.map (p) -> p.userId }}, { fields: { username: true, profile: true }}
