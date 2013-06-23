@@ -1,17 +1,16 @@
 Template.userList.helpers {
 	users: ->
-		# presences = Meteor.presences.find { 'state.postId': Session.get 'postId' }, sort: { 'state.username': 1 }
-		# Meteor.users.find { _id: {$in: presences.map (p) -> p.userId} }
-		Meteor.users.find {}, sort: { username: 1 }
+		presences = Meteor.presences.find { 'state.postId': Session.get 'postId' }, sort: { 'state.username': 1 }
+		Meteor.users.find { _id: { $in: presences.map (p) -> p.userId }}
 
 	anonymousCount: ->
-		Meteor.presences.find({ 'state.postId': Session.get 'postId', userId: { $exists: false }}).count()
+		Meteor.presences.find({ 'state.postId': Session.get('postId'), userId: { $exists: false }}).count()
 
 	hasAnonymousUsers: ->
-		Meteor.presences.find({ 'state.postId': Session.get 'postId', userId: { $exists: false }}).count() > 0
+		Meteor.presences.find({ 'state.postId': Session.get('postId'), userId: { $exists: false }}).count() > 0
 
 	isUser: ->
-		Meteor.userId() is this._id
+		Meteor.userId() is @._id
 }
 
 Template.post.helpers {
