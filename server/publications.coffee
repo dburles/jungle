@@ -16,8 +16,8 @@ Meteor.publish 'userPresence', (postId) ->
 Meteor.publish 'jungle', (parentId) ->
 	Jungle.find { $or: [{ parentId: parentId }, { _id: parentId }] }, limit: 100
 
-# Meteor.publish 'directory', ->
-# 	Meteor.users.find()
+Meteor.publish 'directory', ->
+	Meteor.users.find()
 
 # Meteor.publish 'directory', (postId) ->
 # 	presences = Meteor.presences.find { 'state.postId': postId }
