@@ -33,6 +33,7 @@ Template.userList.helpers {
 
 Template.userList.events {
 	'click .actionFriend': (event, template) ->
+		event.preventDefault()
 		filter = { friendId: @._id, userId: Meteor.userId() }
 		friend = Friends.findOne filter
 

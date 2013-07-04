@@ -18,6 +18,11 @@ Template.friendList.helpers {
 
 	hasFriends: ->
 		Friends.find({ userId: Session.get 'profileUserId' }).count() > 0
+
+	friendViewingPost: ->
+		presence = Meteor.presences.findOne({ userId: @._id })
+		if presence
+			Jungle.findOne(presence.state.postId)
 }
 
 Template.hero.helpers {
@@ -28,6 +33,7 @@ Template.hero.helpers {
 
 Template.friendList.events {
 	'click .actionFriend': (event, template) ->
+		event.preventDefault()
 		filter = { friendId: @._id, userId: Meteor.userId() }
 		friend = Friends.findOne filter
 

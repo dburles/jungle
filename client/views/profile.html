@@ -20,7 +20,7 @@
 		{{#if hasFriends}}
 			{{#each friends}}
 				<li>
-					<a>{{username}} {{#unless isUser}}<span class="pull-right actionFriend">{{#if isFriend}}-{{else}}+{{/if}}</span>{{/unless}}</a>
+					<a href="{{profilePath this}}">{{username}} {{#unless isUser}}<span class="pull-right actionFriend">{{#if isFriend}}-{{else}}+{{/if}}</span>{{/unless}}</a>
 				</li>
 				<li class="active">
 					{{#if isFriend}}
