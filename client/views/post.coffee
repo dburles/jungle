@@ -31,7 +31,7 @@ Template.userList.helpers {
 			Jungle.findOne(presence.state.postId)
 }
 
-Template.userList.events
+Template.userList.events {
 	'click .actionFriend': (event, template) ->
 		filter = { friendId: @._id, userId: Meteor.userId() }
 		friend = Friends.findOne filter
@@ -45,6 +45,7 @@ Template.userList.events
 			friend = Friends.findOne filter
 			friendUser = Meteor.users.findOne(friend.friendId)
 			alert "Added " + friendUser.username + " to friends"
+}
 
 Template.post.helpers {
 	post: ->
