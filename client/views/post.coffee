@@ -35,10 +35,16 @@ Template.userList.events
 	'click .actionFriend': (event, template) ->
 		filter = { friendId: @._id, userId: Meteor.userId() }
 		friend = Friends.findOne filter
+
 		if friend
-			Friends.remove friend._id
+			friendUser = Meteor.users.findOne(friend.friendId)
+			if confirm "Are you sure you want to remove " + friendUser.username + "?"
+				Friends.remove friend._id
 		else
 			Friends.insert filter
+			friend = Friends.findOne filter
+			friendUser = Meteor.users.findOne(friend.friendId)
+			alert "Added " + friendUser.username + " to friends"
 
 Template.post.helpers {
 	post: ->
