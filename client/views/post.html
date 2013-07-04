@@ -22,18 +22,39 @@
 </template>
 
 <template name="userList">
-	<ul class="nav nav-pills nav-stacked">
+	<ul class="nav nav-list">
+
+		<li class="nav-header">Friends</li>
+		{{#if hasFriends}}
+			{{#each friends}}
+				<li class="active">
+					<a>{{username}} <span class="pull-right actionFriend">-friend</span></a>
+				</li>
+				<li>
+					{{#if isFriend}}
+						{{#with friendViewingPost}}
+							<a href="{{postPath this}}">{{message}}</a>
+						{{/with}}
+					{{/if}}
+				</li>
+			{{/each}}
+		{{else}}
+			<li><a>You have no friends</a></li>
+		{{/if}}
+
+		<li class="nav-header">Viewing this post</li>
 		{{#each users}}
 			<li class="{{#if isUser}}active{{/if}}">
-				<a>{{username}}</a> 
+				<a>{{username}} {{#unless isUser}}<span class="pull-right actionFriend">{{#if isFriend}}-{{else}}+{{/if}}friend</span>{{/unless}}</a>
 			</li>
 		{{/each}}
 		{{#if hasAnonymousUsers}}
 			<li>
-				<a>Anonymous +{{anonymousCount}}</a>
+				<a>Anonymous ({{anonymousCount}})</a>
 			</li>
 		{{/if}}
 	</ul>
+
 	{{#comment}}
 	<div class="well">
 		<p><b>Tip:</b> You can add additional components to your layout easily.</p>

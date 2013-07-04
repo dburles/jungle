@@ -1,7 +1,20 @@
 Template.userList.helpers {
+	friends: ->
+		friends = Friends.find({ userId: Meteor.userId() })
+		users = []
+		friends.forEach (friend) ->
+			users.push Meteor.users.findOne(friend.friendId)
+		users
+
+	hasFriends: ->
+		Friends.find({ userId: Meteor.userId() }).count() > 0
+
 	users: ->
 		presences = Meteor.presences.find { 'state.postId': Session.get 'postId' }, sort: { 'state.username': 1 }
-		Meteor.users.find { _id: { $in: presences.map (p) -> p.userId }}
+		Meteor.users.find({ _id: { $in: presences.map (p) -> p.userId }}).fetch()
+
+	isFriend: ->
+		Friends.find({ friendId: @._id, userId: Meteor.userId() }).count() > 0
 
 	anonymousCount: ->
 		Meteor.presences.find({ 'state.postId': Session.get('postId'), userId: { $exists: false }}).count()
@@ -11,7 +24,21 @@ Template.userList.helpers {
 
 	isUser: ->
 		Meteor.userId() is @._id
+
+	friendViewingPost: ->
+		presence = Meteor.presences.findOne({ userId: @._id })
+		if presence
+			Jungle.findOne(presence.state.postId)
 }
+
+Template.userList.events
+	'click .actionFriend': (event, template) ->
+		filter = { friendId: @._id, userId: Meteor.userId() }
+		friend = Friends.findOne filter
+		if friend
+			Friends.remove friend._id
+		else
+			Friends.insert filter
 
 Template.post.helpers {
 	post: ->
