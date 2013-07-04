@@ -28,7 +28,7 @@
 		{{#if hasFriends}}
 			{{#each friends}}
 				<li>
-					<a>{{username}} <span class="pull-right actionFriend">-</span></a>
+					<a href="{{profilePath this}}">{{username}} <span class="pull-right actionFriend">-</span></a>
 				</li>
 				<li class="active">
 					{{#if isFriend}}
@@ -45,7 +45,7 @@
 		<li class="nav-header">Viewing this post</li>
 		{{#each users}}
 			<li class="{{#if isUser}}active{{/if}}">
-				<a>{{username}} {{#unless isUser}}<span class="pull-right actionFriend">{{#if isFriend}}-{{else}}+{{/if}}</span>{{/unless}}</a>
+				<a href="{{profilePath this}}">{{username}} {{#unless isUser}}<span class="pull-right actionFriend">{{#if isFriend}}-{{else}}+{{/if}}</span>{{/unless}}</a>
 			</li>
 		{{/each}}
 		{{#if hasAnonymousUsers}}

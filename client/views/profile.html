@@ -1,3 +1,43 @@
 <template name="profile">
-	<h1>Profile</h1>
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class="span2">
+				{{> friendList}}
+			</div>
+			<div class="span6">
+				{{> hero}}
+			</div>
+			<div class="span4">
+				...wall messages?
+			</div>
+		</div>
+	</div>
+</template>
+
+<template name="friendList">
+	<ul class="nav nav-list">
+		<li class="nav-header">Friends</li>
+		{{#if hasFriends}}
+			{{#each friends}}
+				<li>
+					<a>{{username}} {{#unless isUser}}<span class="pull-right actionFriend">{{#if isFriend}}-{{else}}+{{/if}}</span>{{/unless}}</a>
+				</li>
+				<li class="active">
+					{{#if isFriend}}
+						{{#with friendViewingPost}}
+							<a href="{{postPath this}}">{{message}}</a>
+						{{/with}}
+					{{/if}}
+				</li>
+			{{/each}}
+		{{else}}
+			<li><a>{{profileUsername}} has no friends</a></li>
+		{{/if}}
+	</ul>
+</template>
+
+<template name="hero">
+	<div class="hero-unit">
+		...
+	</div>
 </template>

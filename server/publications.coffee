@@ -26,7 +26,8 @@ Meteor.publish 'directory', ->
 	Meteor.users.find()
 
 Meteor.publish 'friends', (userId) ->
-  Friends.find { userId: userId }
+  # Friends.find { userId: userId }
+  Friends.find()
 
 # Meteor.publish 'directory', (postId) ->
 # 	presences = Meteor.presences.find { 'state.postId': postId }

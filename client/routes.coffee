@@ -8,6 +8,6 @@ Meteor.Router.add {
 	'/profile/:_id': {
 		to: 'profile'
 		and: (id) ->
-			Session.set 'profileId', id
+			Session.set 'profileUserId', id
 	}
 }
