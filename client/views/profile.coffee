@@ -4,11 +4,8 @@ Template.friendList.helpers {
 		user.username if user
 	
 	friends: ->
-		friends = Friends.find({ userId: Session.get 'profileUserId' })
-		users = []
-		friends.forEach (friend) ->
-			users.push Meteor.users.findOne(friend.friendId)
-		users
+		friends = Friends.find { userId: Session.get 'profileUserId' }
+		Meteor.users.find { _id: { $in: friends.map (user) -> user.friendId }}, sort: { username: 1 }
 
 	isFriend: ->
 		Friends.find({ friendId: @._id, userId: Meteor.userId() }).count() > 0

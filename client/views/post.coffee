@@ -1,17 +1,14 @@
 Template.userList.helpers {
 	friends: ->
-		friends = Friends.find({ userId: Meteor.userId() })
-		users = []
-		friends.forEach (friend) ->
-			users.push Meteor.users.findOne(friend.friendId)
-		users
+		friends = Friends.find { userId: Meteor.userId() }
+		Meteor.users.find { _id: { $in: friends.map (user) -> user.friendId }}, sort: { username: 1 }
 
 	hasFriends: ->
 		Friends.find({ userId: Meteor.userId() }).count() > 0
 
 	users: ->
 		presences = Meteor.presences.find { 'state.postId': Session.get 'postId' }, sort: { 'state.username': 1 }
-		Meteor.users.find({ _id: { $in: presences.map (p) -> p.userId }}).fetch()
+		Meteor.users.find({ _id: { $in: presences.map (p) -> p.userId }})
 
 	isFriend: ->
 		Friends.find({ friendId: @._id, userId: Meteor.userId() }).count() > 0
@@ -27,7 +24,7 @@ Template.userList.helpers {
 
 	friendViewingPost: ->
 		presence = Meteor.presences.findOne({ userId: @._id })
-		if presence
+		if presence.count() > 0
 			Jungle.findOne(presence.state.postId)
 }
 
@@ -69,26 +66,35 @@ Template.messageForm.helpers {
 Template.messageForm.events {
 	'submit form': (event, template) ->
 		event.preventDefault()
-		message = template.find 'input[name=message]'
+		
+		if signedIn()
+			message = template.find 'input[name=message]'
 
-		if message.value
-			Meteor.call 'addMessage', {
-				_id: Random.id() # fix for client/server id bug
-				parentId: Session.get 'postId'
-				message: message.value
-				file: Session.get 'file'
-			}
-			Session.set 'file', null
-			event.target.reset()
+			if message.value
+				Meteor.call 'addMessage', {
+					_id: Random.id() # fix for client/server id bug
+					parentId: Session.get 'postId'
+					message: message.value
+					file: Session.get 'file'
+				}
+				Session.set 'file', null
+				event.target.reset()
 
 	'click a#picker': ->
-		filepicker.pick {},
-			(FPFile) ->
-				Session.set 'file', FPFile
-			(FPError) ->
-				
+		if signedIn()
+			filepicker.pick {},
+				(FPFile) ->
+					Session.set 'file', FPFile
+				(FPError) ->
+					
 	'click a#removeFile': ->
 		filepicker.remove Session.get 'file'
 		Session.set 'file', null
 		false
 }
+
+signedIn = ->
+	if not Meteor.user()
+		alert "Please sign-in first"
+		return false
+	return true

@@ -1,11 +1,13 @@
 now
 	*fix subscriptions, stop sending the entire collection to the user
 	add friends and see what post they are viewing and their online/offline status
+	add notifications and tagging in posts
 	SECURE IT
 	*create methods for inserts
 	*use sessions for showing the image is ready to be posted
 	figure out how to delete images that are never posted, as they are stored before posting
 	*rebuild front end code
+	homepage will probably have most active posts, most visited and most linked
 
 next
 	add user profiles
