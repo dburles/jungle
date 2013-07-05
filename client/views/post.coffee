@@ -24,7 +24,7 @@ Template.userList.helpers {
 
 	friendViewingPost: ->
 		presence = Meteor.presences.findOne({ userId: @._id })
-		if presence.count() > 0
+		if presence
 			Jungle.findOne(presence.state.postId)
 }
 
