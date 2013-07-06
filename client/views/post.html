@@ -109,7 +109,8 @@
 
 <template name="message">
   <tr>
-    <td>{{messageCount}}</td>
+    <td width="15"><span class="badge">{{messageCount}}</span></td>
+    <td width="15"><span class="badge label-info">{{userCount}}</span></td>
     <td class="image">
       {{#if file}}
       <a href="{{postPath this}}">

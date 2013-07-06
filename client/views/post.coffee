@@ -58,6 +58,11 @@ Template.messages.helpers {
     Jungle.find({ _id: { $not: Session.get 'postId' }, parentId: Session.get 'postId' }).count()
 }
 
+Template.message.helpers {
+  userCount: ->
+    Meteor.presences.find({ 'state.postId': @._id }).count()
+}
+
 Template.messageForm.helpers {
   fileReady: ->
     Session.get 'file'

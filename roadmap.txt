@@ -1,19 +1,19 @@
 now
-  filepicker bug
-  is typing
-  show user count against message
+  filepicker bug on new window open (ipad iphone)
+  *is typing - don't think it needs it
+  *show user count against message
   *fix subscriptions, stop sending the entire collection to the user
-  add friends and see what post they are viewing and their online/offline status
+  *add friends and see what post they are viewing and their online/offline status
   add notifications and tagging in posts
-  SECURE IT
   *create methods for inserts
   *use sessions for showing the image is ready to be posted
   figure out how to delete images that are never posted, as they are stored before posting
   *rebuild front end code
   homepage will probably have most active posts, most visited and most linked
+  SECURE IT
 
 next
-  add user profiles
+  *add user profiles
   do something with the homepage
   add a button on each message so a user can like fav it, so it gets like repinned/posted whatever on their own profile, like tumblr
   homepage, subscriptions
