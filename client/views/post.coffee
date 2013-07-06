@@ -38,11 +38,12 @@ Template.userList.events {
       friendUser = Meteor.users.findOne(friend.friendId)
       if confirm "Are you sure you want to remove " + friendUser.username + "?"
         Friends.remove friend._id
+        $.bootstrapGrowl "You are no longer friends with " + friendUser.username
     else
       Friends.insert filter
       friend = Friends.findOne filter
       friendUser = Meteor.users.findOne(friend.friendId)
-      alert "Added " + friendUser.username + " to friends"
+      $.bootstrapGrowl "Added " + friendUser.username + " to friends"
 }
 
 Template.post.helpers {
@@ -61,6 +62,10 @@ Template.messages.helpers {
 Template.message.helpers {
   userCount: ->
     Meteor.presences.find({ 'state.postId': @._id }).count()
+
+  pinnedClass: ->
+    if Pins.find({ postId: @._id }).count() > 0
+      "pinned"
 }
 
 Template.messageForm.helpers {
@@ -96,12 +101,32 @@ Template.messageForm.events {
       filepicker.pick {},
         (FPFile) ->
           Session.set 'file', FPFile
+          $.bootstrapGrowl "Your image is ready to post!"
         (FPError) ->
           
   'click a#removeFile': ->
     filepicker.remove Session.get 'file'
     Session.set 'file', null
     false
+}
+
+Template.message.events {
+  'click .actionPin': (event, template) ->
+    event.preventDefault()
+    filter = { postId: @._id, userId: Meteor.userId() }
+    pin = Pins.findOne filter
+    
+    if pin
+      post = Jungle.findOne(pin.postId)
+      user = Meteor.users.findOne(post.userId)
+      Pins.remove pin._id
+      $.bootstrapGrowl "Unpinned " + user.username + "'s message"
+    else
+      Pins.insert _.extend(filter, { ts: (new Date).getTime() })
+      pin = Pins.findOne filter
+      post = Jungle.findOne(pin.postId)
+      user = Meteor.users.findOne(post.userId)
+      $.bootstrapGrowl "Pinned " + user.username + "'s message to your profile"
 }
 
 signedIn = ->

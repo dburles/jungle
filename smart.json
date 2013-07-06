@@ -2,6 +2,8 @@
   "packages": {
     "accounts-ui-bootstrap-dropdown": {},
     "router": {},
-    "presence": {}
+    "presence": {},
+    "font-awesome": {},
+    "bootstrap-growl": {}
   }
 }

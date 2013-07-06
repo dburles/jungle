@@ -1,5 +1,6 @@
 @Jungle = new Meteor.Collection 'jungle'
 @Friends = new Meteor.Collection 'friends'
+@Pins = new Meteor.Collection 'pins'
 
 Jungle.allow {
   insert: ->
@@ -10,6 +11,14 @@ Jungle.allow {
     false
 }
 Friends.allow {
+  insert: ->
+    true
+  update: ->
+    true
+  remove: ->
+    true
+}
+Pins.allow {
   insert: ->
     true
   update: ->

@@ -109,8 +109,9 @@
 
 <template name="message">
   <tr>
-    <td width="15"><span class="badge">{{messageCount}}</span></td>
-    <td width="15"><span class="badge label-info">{{userCount}}</span></td>
+    <td><a class="actionPin"><i class="icon-pushpin {{pinnedClass}}"></i></a></td>
+    <td><span class="badge">{{messageCount}}</span></td>
+    <td><span class="badge label-info">{{userCount}}</span></td>
     <td class="image">
       {{#if file}}
       <a href="{{postPath this}}">

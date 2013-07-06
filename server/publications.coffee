@@ -15,3 +15,6 @@ Meteor.publish 'directory', ->
 
 Meteor.publish 'friends', ->
   Friends.find {}
+
+Meteor.publish 'pins', ->
+  Pins.find {}

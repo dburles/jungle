@@ -4,13 +4,15 @@
     "basePackages": {
       "accounts-ui-bootstrap-dropdown": {},
       "router": {},
-      "presence": {}
+      "presence": {},
+      "font-awesome": {},
+      "bootstrap-growl": {}
     },
     "packages": {
       "accounts-ui-bootstrap-dropdown": {
         "git": "https://github.com/erobit/meteor-accounts-ui-bootstrap-dropdown.git",
-        "tag": "v0.1.0",
-        "commit": "e66558aaa4dc0d85c6ddb63bd2289b38c2b793f6"
+        "tag": "v0.1.5",
+        "commit": "e12b128f140caa2797720cbd5fae084de7810c6a"
       },
       "router": {
         "git": "https://github.com/tmeasday/meteor-router.git",
@@ -21,6 +23,16 @@
         "git": "https://github.com/tmeasday/meteor-presence.git",
         "tag": "v0.2.0",
         "commit": "cb103275ba67e524bf3a9cce4ff0b36f03959d1b"
+      },
+      "font-awesome": {
+        "git": "https://github.com/nate-strauser/meteor-font-awesome.git",
+        "tag": "v3.2.0",
+        "commit": "2cba6f907a2579cae2d399b522f9544c13d5e091"
+      },
+      "bootstrap-growl": {
+        "git": "https://github.com/TimHeckel/meteor-bootstrap-growl.git",
+        "tag": "v0.1.1",
+        "commit": "674fd231a46e405f8d4eb463725d8003a02374ec"
       },
       "page-js-ie-support": {
         "git": "https://github.com/tmeasday/meteor-page-js-ie-support.git",
