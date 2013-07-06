@@ -47,7 +47,7 @@ Template.userList.events {
 
       if friend
         friendUser = Meteor.users.findOne(friend.friendId)
-        if confirm "Are you sure you want to remove " + friendUser.username + "?"
+        if confirm "Are you sure you want to unfriend " + friendUser.username + "?"
           Friends.remove friend._id
           $.bootstrapGrowl "You are no longer friends with " + friendUser.username
       else
