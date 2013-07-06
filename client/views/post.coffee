@@ -23,9 +23,19 @@ Template.userList.helpers {
     Meteor.userId() is @._id
 
   friendViewingPost: ->
-    presence = Meteor.presences.findOne({ userId: @._id })
+    presence = Meteor.presences.findOne { userId: @._id }
     if presence
-      Jungle.findOne(presence.state.postId)
+      presence = Jungle.findOne(presence.state.postId)
+
+  status: ->
+    presence = Meteor.presences.findOne { userId: @._id }
+    if presence
+      if presence.state.away
+        "away"
+      else
+        "online"
+    else
+      "offline"
 }
 
 Template.userList.events {
@@ -95,6 +105,7 @@ Template.messageForm.events {
         }
         Session.set 'file', null
         event.target.reset()
+        setAwayTimeout()
 
   'click a#picker': ->
     if signedIn()

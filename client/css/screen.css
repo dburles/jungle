@@ -17,3 +17,12 @@ a {
 .pinned {
   color: red;
 }
+.online {
+  color: rgb(0, 197, 0);
+}
+.offline {
+  color: red;
+}
+.away {
+  color: orange;
+}

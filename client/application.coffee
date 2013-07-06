@@ -15,3 +15,11 @@ Meteor.subscribe 'jungle'
 Meteor.subscribe 'directory'
 Meteor.subscribe 'friends'
 Meteor.subscribe 'pins'
+
+@setAwayTimeout = ->
+  Session.set 'away', false
+  Meteor.setTimeout ->
+    Session.set 'away', true
+  , 300000 # 5 minutes
+
+setAwayTimeout()

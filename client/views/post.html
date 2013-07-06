@@ -23,12 +23,16 @@
 
 <template name="userList">
   <ul class="nav nav-list">
-
     <li class="nav-header">Friends</li>
     {{#if hasFriends}}
       {{#each friends}}
-        <li>
-          <a href="{{profilePath this}}">{{username}} <span class="pull-right actionFriend">-</span></a>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-circle {{status}}"></i> {{username}}<i class="icon-caret-down pull-right"></i></a>
+          <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+            <li><a tabindex="-1" href="{{profilePath this}}">View Profile</a></li>
+            <li class="divider"></li>
+            <li><a tabindex="-1" href="#" class="actionFriend">Unfriend</a></li>
+          </ul>
         </li>
         <li class="active">
           {{#if isFriend}}
@@ -44,8 +48,23 @@
 
     <li class="nav-header">Viewing this post</li>
     {{#each users}}
-      <li class="{{#if isUser}}active{{/if}}">
-        <a href="{{profilePath this}}">{{username}} {{#unless isUser}}<span class="pull-right actionFriend">{{#if isFriend}}-{{else}}+{{/if}}</span>{{/unless}}</a>
+      <li class="dropdown {{#if isUser}}active{{/if}}">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-circle {{status}}"></i> {{username}}<i class="icon-caret-down pull-right"></i></a>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+          <li><a tabindex="-1" href="{{profilePath this}}">View Profile</a></li>
+          {{#unless isUser}}
+            <li class="divider"></li>
+            <li>
+              <a tabindex="-1" href="#" class="actionFriend">
+                {{#if isFriend}}
+                  Unfriend
+                {{else}}
+                  Add to friends
+                {{/if}}
+              </a>
+            </li>
+          {{/unless}}
+        </ul>
       </li>
     {{/each}}
     {{#if hasAnonymousUsers}}
