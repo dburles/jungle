@@ -54,12 +54,16 @@ a {
   height: 30px;
   padding: 5px 0;
 }
-.shadow {
+/*.shadow {
   -webkit-box-shadow: 14px 0px 28px 13px rgba(0, 0, 0, 0.8);
   -moz-box-shadow: 14px 0px 28px 13px rgba(0, 0, 0, 0.8);
   -box-shadow: 14px 0px 28px 13px rgba(0, 0, 0, 0.8);
+}*/
+.shadow {
+  -webkit-box-shadow: -10px 0px 50px rgba(50, 50, 50, 0.8);
+  -moz-box-shadow:    -10px 0px 50px rgba(50, 50, 50, 0.8);
+  box-shadow:         -10px 0px 50px rgba(50, 50, 50, 0.8);
 }
-
 
 
 /* bootstrap overrides */
