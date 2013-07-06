@@ -6,6 +6,7 @@
       </div>
       <div class="span6">
         {{> hero}}
+        {{> pins}}
       </div>
       <div class="span4">
         ...wall messages?
@@ -54,5 +55,27 @@
 <template name="hero">
   <div class="hero-unit">
     {{profileUsername}}'s profile
+  </div>
+</template>
+
+<template name="pins">
+  {{#each pins}}
+    {{> pinned}}
+  {{/each}}
+</template>
+
+<template name="pinned">
+  {{#with post}}
+  <div class="media">
+    {{#if file}}
+    <a class="pull-left" href="{{postPath this}}">
+      <img src="{{file.url}}/convert?w=128&h=128&fit=crop" width="128" height="128">
+    </a>
+    {{/if}}
+    <div class="media-body">
+      <h4 class="media-heading"><a href="{{postPath this}}">{{username}}</a></h4>
+      {{message}}
+    </div>
+    {{/with}}
   </div>
 </template>

@@ -51,3 +51,13 @@ Template.friendList.events {
       friendUser = Meteor.users.findOne(friend.friendId)
       alert "Added " + friendUser.username + " to friends"
 }
+
+Template.pins.helpers {
+  pins: ->
+    Pins.find { userId: Session.get 'profileUserId' }, sort: { ts: -1 }
+}
+
+Template.pinned.helpers {
+  post: ->
+    Jungle.findOne(@.postId)
+}

@@ -1,4 +1,6 @@
 now
+  unpin posts from own profile
+  add friend/ indicate from profile
   filepicker bug on new window open (ipad iphone)
   *is typing - don't think it needs it
   *show user count against message
