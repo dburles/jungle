@@ -54,7 +54,7 @@ Template.userList.events {
         Friends.insert filter
         friend = Friends.findOne filter
         friendUser = Meteor.users.findOne(friend.friendId)
-        $.bootstrapGrowl "Added " + friendUser.username + " to friends"
+        $.bootstrapGrowl "Added " + friendUser.username + " to friends", { type: 'success' }
 }
 
 Template.post.helpers {
@@ -64,7 +64,7 @@ Template.post.helpers {
 
 Template.messages.helpers {
   messages: ->
-    Jungle.find { _id: { $not: Session.get 'postId' }, parentId: Session.get 'postId' }, sort: { ts: -1 }
+    Jungle.find { _id: { $not: Session.get 'postId' }, parentId: Session.get 'postId' }, sort: { ts: 1 }
   
   count: ->
     Jungle.find({ _id: { $not: Session.get 'postId' }, parentId: Session.get 'postId' }).count()
@@ -138,6 +138,9 @@ Template.message.events {
         pin = Pins.findOne filter
         post = Jungle.findOne(pin.postId)
         user = Meteor.users.findOne(post.userId)
-        $.bootstrapGrowl "Pinned " + user.username + "'s message to your profile"
+        $.bootstrapGrowl "Pinned " + user.username + "'s message to your profile", { type: 'success' }
 }
+
+Template.message.rendered = ->
+  $('.messages').scrollTop(9999999)
 

@@ -1,3 +1,7 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
 table#messages td.image img {
   min-width: 50px;
   min-height: 50px;
@@ -25,4 +29,43 @@ a {
 }
 .away {
   color: orange;
+}
+.message-pane {
+  /*border: 1px solid green;*/
+  background: #FFF;
+  width: 50%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  opacity: 0.8;
+}
+.messages {
+  overflow-y: auto;
+  /*border: 1px solid red;*/
+  height: 400px;
+  margin-bottom: 40px;
+}
+.messageForm {
+  width: 100%;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  margin: 0 -5px 0 0;
+  height: 30px;
+  padding: 5px 0;
+}
+.shadow {
+  -webkit-box-shadow: 14px 0px 28px 13px rgba(0, 0, 0, 0.8);
+  -moz-box-shadow: 14px 0px 28px 13px rgba(0, 0, 0, 0.8);
+  -box-shadow: 14px 0px 28px 13px rgba(0, 0, 0, 0.8);
+}
+
+
+
+/* bootstrap overrides */
+.container {
+  margin-left: 0;
+}
+.table {
+  margin: 0;
 }
