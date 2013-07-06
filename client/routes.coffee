@@ -1,3 +1,6 @@
+Meteor.Router.beforeRouting = ->
+  setAwayTimeout()
+
 Meteor.Router.add {
   '/': 'home'
   '/post/:_id': {

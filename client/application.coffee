@@ -22,8 +22,6 @@ Meteor.subscribe 'pins'
     Session.set 'away', true
   , 300000 # 5 minutes
 
-setAwayTimeout()
-
 @signedIn = ->
   if not Meteor.user()
     alert "Please sign-in first"
