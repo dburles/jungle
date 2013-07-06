@@ -5,8 +5,11 @@ now
     posting a picture breaks the layout
 
   make posts / profile DRY
-
+  loading states
+  
+  private messages
   unpin posts from own profile
+  show user status on their profile
   add friend/ indicate from profile
   sounds when not focused
   highlight unfocused messages like facebook chat
@@ -26,16 +29,16 @@ now
   figure out how to delete images that are never posted, as they are stored before posting
   *rebuild front end code
   homepage will probably have most active posts, most visited and most linked
+  
   SECURE IT
 
 next
   *add user profiles
   do something with the homepage
-  add a button on each message so a user can like fav it, so it gets like repinned/posted whatever on their own profile, like tumblr
-  homepage, subscriptions
-  friends list + private messages
-  profile page listing activity
-  view profile, save(pin), private message, add to friends
+  *add a button on each message so a user can like fav it, so it gets like repinned/posted whatever on their own profile, like tumblr
+  *friends list
+  *~profile page listing activity
+  *~view profile, save(pin), private message, add to friends
 
 future
   setup amazon for image hosting
