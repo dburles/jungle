@@ -1,8 +1,10 @@
 now
   show message count against friends viewingpost
 
-  BUGS
-  posting a picture breaks the layout
+    BUGS
+    posting a picture breaks the layout
+
+  make posts / profile DRY
 
   unpin posts from own profile
   add friend/ indicate from profile

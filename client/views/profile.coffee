@@ -51,7 +51,7 @@ Template.friendList.events {
         Friends.insert filter
         friend = Friends.findOne filter
         friendUser = Meteor.users.findOne(friend.friendId)
-        alert "Added " + friendUser.username + " to friends", { type: 'success' }
+        $.bootstrapGrowl "Added " + friendUser.username + " to friends", { type: 'success' }
 }
 
 Template.pins.helpers {
