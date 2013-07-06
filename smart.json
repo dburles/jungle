@@ -1,9 +1,9 @@
 {
   "packages": {
-    "accounts-ui-bootstrap-dropdown": {},
     "router": {},
     "presence": {},
     "font-awesome": {},
-    "bootstrap-growl": {}
+    "bootstrap-growl": {},
+    "accounts-ui-bootstrap-dropdown": {}
   }
 }

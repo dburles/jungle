@@ -17,7 +17,7 @@ Template.friendList.helpers {
     Friends.find({ userId: Session.get 'profileUserId' }).count() > 0
 
   friendViewingPost: ->
-    presence = Meteor.presences.findOne({ userId: @._id })
+    presence = Meteor.presences.findOne { userId: @._id }
     if presence
       Jungle.findOne(presence.state.postId)
   
@@ -44,13 +44,14 @@ Template.friendList.events {
 
       if friend
         friendUser = Meteor.users.findOne(friend.friendId)
-        if confirm "Are you sure you want to remove " + friendUser.username + "?"
+        if confirm "Are you sure you want to unfriend " + friendUser.username + "?"
           Friends.remove friend._id
+          $.bootstrapGrowl "You are no longer friends with " + friendUser.username
       else
         Friends.insert filter
         friend = Friends.findOne filter
         friendUser = Meteor.users.findOne(friend.friendId)
-        alert "Added " + friendUser.username + " to friends"
+        $.bootstrapGrowl "Added " + friendUser.username + " to friends", { type: 'success' }
 }
 
 Template.pins.helpers {
