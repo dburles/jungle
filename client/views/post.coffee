@@ -41,19 +41,20 @@ Template.userList.helpers {
 Template.userList.events {
   'click .actionFriend': (event, template) ->
     event.preventDefault()
-    filter = { friendId: @._id, userId: Meteor.userId() }
-    friend = Friends.findOne filter
-
-    if friend
-      friendUser = Meteor.users.findOne(friend.friendId)
-      if confirm "Are you sure you want to remove " + friendUser.username + "?"
-        Friends.remove friend._id
-        $.bootstrapGrowl "You are no longer friends with " + friendUser.username
-    else
-      Friends.insert filter
+    if signedIn()
+      filter = { friendId: @._id, userId: Meteor.userId() }
       friend = Friends.findOne filter
-      friendUser = Meteor.users.findOne(friend.friendId)
-      $.bootstrapGrowl "Added " + friendUser.username + " to friends"
+
+      if friend
+        friendUser = Meteor.users.findOne(friend.friendId)
+        if confirm "Are you sure you want to remove " + friendUser.username + "?"
+          Friends.remove friend._id
+          $.bootstrapGrowl "You are no longer friends with " + friendUser.username
+      else
+        Friends.insert filter
+        friend = Friends.findOne filter
+        friendUser = Meteor.users.findOne(friend.friendId)
+        $.bootstrapGrowl "Added " + friendUser.username + " to friends"
 }
 
 Template.post.helpers {
@@ -123,24 +124,20 @@ Template.messageForm.events {
 Template.message.events {
   'click .actionPin': (event, template) ->
     event.preventDefault()
-    filter = { postId: @._id, userId: Meteor.userId() }
-    pin = Pins.findOne filter
-    
-    if pin
-      post = Jungle.findOne(pin.postId)
-      user = Meteor.users.findOne(post.userId)
-      Pins.remove pin._id
-      $.bootstrapGrowl "Unpinned " + user.username + "'s message"
-    else
-      Pins.insert _.extend(filter, { ts: (new Date).getTime() })
+    if signedIn()
+      filter = { postId: @._id, userId: Meteor.userId() }
       pin = Pins.findOne filter
-      post = Jungle.findOne(pin.postId)
-      user = Meteor.users.findOne(post.userId)
-      $.bootstrapGrowl "Pinned " + user.username + "'s message to your profile"
+      
+      if pin
+        post = Jungle.findOne(pin.postId)
+        user = Meteor.users.findOne(post.userId)
+        Pins.remove pin._id
+        $.bootstrapGrowl "Unpinned " + user.username + "'s message"
+      else
+        Pins.insert _.extend(filter, { ts: (new Date).getTime() })
+        pin = Pins.findOne filter
+        post = Jungle.findOne(pin.postId)
+        user = Meteor.users.findOne(post.userId)
+        $.bootstrapGrowl "Pinned " + user.username + "'s message to your profile"
 }
 
-signedIn = ->
-  if not Meteor.user()
-    alert "Please sign-in first"
-    return false
-  return true

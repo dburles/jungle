@@ -38,18 +38,19 @@ Template.hero.helpers {
 Template.friendList.events {
   'click .actionFriend': (event, template) ->
     event.preventDefault()
-    filter = { friendId: @._id, userId: Meteor.userId() }
-    friend = Friends.findOne filter
-
-    if friend
-      friendUser = Meteor.users.findOne(friend.friendId)
-      if confirm "Are you sure you want to remove " + friendUser.username + "?"
-        Friends.remove friend._id
-    else
-      Friends.insert filter
+    if signedIn()
+      filter = { friendId: @._id, userId: Meteor.userId() }
       friend = Friends.findOne filter
-      friendUser = Meteor.users.findOne(friend.friendId)
-      alert "Added " + friendUser.username + " to friends"
+
+      if friend
+        friendUser = Meteor.users.findOne(friend.friendId)
+        if confirm "Are you sure you want to remove " + friendUser.username + "?"
+          Friends.remove friend._id
+      else
+        Friends.insert filter
+        friend = Friends.findOne filter
+        friendUser = Meteor.users.findOne(friend.friendId)
+        alert "Added " + friendUser.username + " to friends"
 }
 
 Template.pins.helpers {

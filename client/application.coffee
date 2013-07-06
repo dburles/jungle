@@ -23,3 +23,9 @@ Meteor.subscribe 'pins'
   , 300000 # 5 minutes
 
 setAwayTimeout()
+
+@signedIn = ->
+  if not Meteor.user()
+    alert "Please sign-in first"
+    return false
+  return true
