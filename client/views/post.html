@@ -48,7 +48,7 @@
 
     <li class="nav-header">Viewing this post</li>
     {{#each users}}
-      <li class="dropdown {{#if isUser}}active{{/if}}">
+      <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-circle {{status}}"></i> {{username}}<i class="icon-caret-down pull-right"></i></a>
         <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
           <li><a tabindex="-1" href="{{profilePath this}}">View Profile</a></li>
@@ -128,7 +128,7 @@
 
 <template name="message">
   <tr>
-    <td><a class="actionPin"><i class="icon-pushpin {{pinnedClass}}"></i></a></td>
+    <td><a class="actionPin"><i class="icon-pushpin {{#if isPinned}}pinned{{/if}}"></i></a></td>
     <td><span class="badge">{{messageCount}}</span></td>
     <td><span class="badge label-info">{{userCount}}</span></td>
     <td class="image">

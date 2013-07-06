@@ -73,9 +73,8 @@ Template.message.helpers {
   userCount: ->
     Meteor.presences.find({ 'state.postId': @._id }).count()
 
-  pinnedClass: ->
-    if Pins.find({ postId: @._id }).count() > 0
-      "pinned"
+  isPinned: ->
+    Pins.find({ postId: @._id }).count() > 0
 }
 
 Template.messageForm.helpers {
