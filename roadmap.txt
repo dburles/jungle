@@ -1,6 +1,18 @@
 now
+  show message count against friends viewingpost
+
+  BUGS
+  posting a picture breaks the layout
+
   unpin posts from own profile
   add friend/ indicate from profile
+  sounds when not focused
+  highlight unfocused messages like facebook chat
+
+  notifications (user has pinned your post)
+  friend accept, block, unfriend people that friend you
+  track route history!
+
   filepicker bug on new window open (ipad iphone)
   *is typing - don't think it needs it
   *show user count against message
