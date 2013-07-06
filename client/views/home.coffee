@@ -1,4 +1,4 @@
 Template.home.helpers {
-	mainPost: ->
-		Jungle.findOne()
+  mainPost: ->
+    Jungle.findOne()
 }

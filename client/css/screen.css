@@ -1,16 +1,16 @@
 table#messages td.image img {
-	min-width: 50px;
-	min-height: 50px;
+  min-width: 50px;
+  min-height: 50px;
 }
 .hero-unit {
-	padding: 30px;
+  padding: 30px;
 }
 a {
-	cursor: pointer;
+  cursor: pointer;
 }
 .messageForm span.action {
-	width: 20%;
+  width: 20%;
 }
 .messageForm input {
-	width: 80%;
+  width: 80%;
 }

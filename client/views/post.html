@@ -1,124 +1,124 @@
 <template name="post">
-	<div class="container-fluid">
-		<div class="row-fluid">
-			<div class="span2">
-				{{> userList}}
-			</div>
-			<div class="span6">
-				<ul class="breadcrumb">
-					<li>
-						<a href="{{postPath post.parentId}}">Up</a>
-						<br>
-					</li>
-				</ul>
-				{{> postContent post}}
-			</div>
-			<div class="span4">
-				{{> messageForm}}
-				{{> messages}}
-			</div>
-		</div>
-	</div>
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span2">
+        {{> userList}}
+      </div>
+      <div class="span6">
+        <ul class="breadcrumb">
+          <li>
+            <a href="{{postPath post.parentId}}">Up</a>
+            <br>
+          </li>
+        </ul>
+        {{> postContent post}}
+      </div>
+      <div class="span4">
+        {{> messageForm}}
+        {{> messages}}
+      </div>
+    </div>
+  </div>
 </template>
 
 <template name="userList">
-	<ul class="nav nav-list">
+  <ul class="nav nav-list">
 
-		<li class="nav-header">Friends</li>
-		{{#if hasFriends}}
-			{{#each friends}}
-				<li>
-					<a href="{{profilePath this}}">{{username}} <span class="pull-right actionFriend">-</span></a>
-				</li>
-				<li class="active">
-					{{#if isFriend}}
-						{{#with friendViewingPost}}
-							<a href="{{postPath this}}">{{message}}</a>
-						{{/with}}
-					{{/if}}
-				</li>
-			{{/each}}
-		{{else}}
-			<li><a>You have no friends</a></li>
-		{{/if}}
+    <li class="nav-header">Friends</li>
+    {{#if hasFriends}}
+      {{#each friends}}
+        <li>
+          <a href="{{profilePath this}}">{{username}} <span class="pull-right actionFriend">-</span></a>
+        </li>
+        <li class="active">
+          {{#if isFriend}}
+            {{#with friendViewingPost}}
+              <a href="{{postPath this}}">{{message}}</a>
+            {{/with}}
+          {{/if}}
+        </li>
+      {{/each}}
+    {{else}}
+      <li><a>You have no friends</a></li>
+    {{/if}}
 
-		<li class="nav-header">Viewing this post</li>
-		{{#each users}}
-			<li class="{{#if isUser}}active{{/if}}">
-				<a href="{{profilePath this}}">{{username}} {{#unless isUser}}<span class="pull-right actionFriend">{{#if isFriend}}-{{else}}+{{/if}}</span>{{/unless}}</a>
-			</li>
-		{{/each}}
-		{{#if hasAnonymousUsers}}
-			<li>
-				<a>Anonymous ({{anonymousCount}})</a>
-			</li>
-		{{/if}}
-	</ul>
+    <li class="nav-header">Viewing this post</li>
+    {{#each users}}
+      <li class="{{#if isUser}}active{{/if}}">
+        <a href="{{profilePath this}}">{{username}} {{#unless isUser}}<span class="pull-right actionFriend">{{#if isFriend}}-{{else}}+{{/if}}</span>{{/unless}}</a>
+      </li>
+    {{/each}}
+    {{#if hasAnonymousUsers}}
+      <li>
+        <a>Anonymous ({{anonymousCount}})</a>
+      </li>
+    {{/if}}
+  </ul>
 
-	{{#comment}}
-	<div class="well">
-		<p><b>Tip:</b> You can add additional components to your layout easily.</p>
-	</div>
-	{{/comment}}
+  {{#comment}}
+  <div class="well">
+    <p><b>Tip:</b> You can add additional components to your layout easily.</p>
+  </div>
+  {{/comment}}
 </template>
 
 <template name="postContent">
-	<div class="hero-unit">
-		{{#if file}}
-			<img src="{{file.url}}/convert?w=800&fit=max">
-		{{/if}}
-		<p>{{message}}</p>
-		<h3>{{username}}</h3>
-	</div>
+  <div class="hero-unit">
+    {{#if file}}
+      <img src="{{file.url}}/convert?w=800&fit=max">
+    {{/if}}
+    <p>{{message}}</p>
+    <h3>{{username}}</h3>
+  </div>
 </template>
 
 <template name="postContent_experiment">
-	<div class="media">
-		{{#if file}}
-			<img class="media-object" src="{{file.url}}/convert?w=800&fit=max">
-		{{/if}}
-		<div class="media-body">
-			<p>{{message}}</p>
-			<h4 class="media-heading">{{username}}</h4>
-		</div>
-	</div>
+  <div class="media">
+    {{#if file}}
+      <img class="media-object" src="{{file.url}}/convert?w=800&fit=max">
+    {{/if}}
+    <div class="media-body">
+      <p>{{message}}</p>
+      <h4 class="media-heading">{{username}}</h4>
+    </div>
+  </div>
 </template>
 
 <template name="messageForm">
-	<form class="messageForm">
-		{{#if fileReady}}
-			<span class="action"><p>File Ready! <a id="removeFile">[ Remove? ]</a></p></span>
-		{{else}}
-			<span class="action"><a id="picker" class="btn pull-left btn-primary">+&nbsp;Image</a></span>
-		{{/if}}
-		<input name="message" type="text" class="input-xxlarge input-block-level" placeholder="Type a message...">
-	</form>
+  <form class="messageForm">
+    {{#if fileReady}}
+      <span class="action"><p>File Ready! <a id="removeFile">[ Remove? ]</a></p></span>
+    {{else}}
+      <span class="action"><a id="picker" class="btn pull-left btn-primary">+&nbsp;Image</a></span>
+    {{/if}}
+    <input name="message" type="text" class="input-xxlarge input-block-level" placeholder="Type a message...">
+  </form>
 </template>
 
 <template name="messages">
-	{{#if count}}
-	<table id="messages" class="table">
-		<tbody>
-		{{#each messages}}
-			{{> message}}
-		{{/each}}
-		</tbody>
-	</table>
-	{{/if}}
+  {{#if count}}
+  <table id="messages" class="table">
+    <tbody>
+    {{#each messages}}
+      {{> message}}
+    {{/each}}
+    </tbody>
+  </table>
+  {{/if}}
 </template>
 
 <template name="message">
-	<tr>
-		<td>{{messageCount}}</td>
-		<td class="image">
-			{{#if file}}
-			<a href="{{postPath this}}">
-				<img src="{{file.url}}/convert?w=50&h=50&fit=crop" width="50" height="50">
-			</a>
-			{{/if}}
-		</td>
-		<td><a href="{{postPath this}}">{{username}}</a></td>
-		<td>{{message}}</td>
-		<td align="right"><span class="pull-right"><a href="{{profilePath userId}}">&gt;</a></span></td>
-	</tr>
+  <tr>
+    <td>{{messageCount}}</td>
+    <td class="image">
+      {{#if file}}
+      <a href="{{postPath this}}">
+        <img src="{{file.url}}/convert?w=50&h=50&fit=crop" width="50" height="50">
+      </a>
+      {{/if}}
+    </td>
+    <td><a href="{{postPath this}}">{{username}}</a></td>
+    <td>{{message}}</td>
+    <td align="right"><span class="pull-right"><a href="{{profilePath userId}}">&gt;</a></span></td>
+  </tr>
 </template>
