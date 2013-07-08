@@ -10,12 +10,14 @@ Session.setDefault 'away', false
 
 Meteor.startup ->
   filepicker.setKey 'Ay0CJr5oZQi6jI6mzQTbgz'
+  $('body').spin('modal')
 
-Meteor.subscribe 'userPresence'
-Meteor.subscribe 'jungle'
-Meteor.subscribe 'directory'
-Meteor.subscribe 'friends'
-Meteor.subscribe 'pins'
+globalSubscriptionHandles = []
+globalSubscriptionHandles.push Meteor.subscribe 'userPresence'
+globalSubscriptionHandles.push Meteor.subscribe 'jungle'
+globalSubscriptionHandles.push Meteor.subscribe 'directory'
+globalSubscriptionHandles.push Meteor.subscribe 'friends'
+globalSubscriptionHandles.push Meteor.subscribe 'pins'
 
 handles = []
 
@@ -35,3 +37,10 @@ handles = []
     alert "Please sign-in first"
     return false
   return true
+
+Deps.autorun ->
+  isReady = globalSubscriptionHandles.every( (handle) ->
+    handle.ready()  
+  )
+  if isReady
+    $('body').spin('modal')

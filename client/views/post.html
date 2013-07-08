@@ -18,7 +18,6 @@
         {{> messages}}
         {{> messageForm}}
       </div>
-
     </div>
   </div>
 </template>
@@ -37,11 +36,9 @@
           </ul>
         </li>
         <li class="active">
-          {{#if isFriend}}
-            {{#with friendViewingPost}}
-              <a href="{{postPath this}}">{{message}}</a>
-            {{/with}}
-          {{/if}}
+          {{#with friendViewingPost}}
+            <a href="{{postPath this}}">{{message}} <span class="pull-right">{{displayCount messageCount}}</span></a>
+          {{/with}}
         </li>
       {{/each}}
     {{else}}

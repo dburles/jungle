@@ -1,5 +1,5 @@
 now
-  show message count against friends viewingpost
+  *show message count against friends viewingpost
 
     BUGS
     posting a picture breaks the layout

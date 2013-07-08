@@ -10,9 +10,6 @@ Template.userList.helpers {
     presences = Meteor.presences.find { 'state.postId': Session.get 'postId' }, sort: { 'state.username': 1 }
     Meteor.users.find({ _id: { $in: presences.map (p) -> p.userId }})
 
-  isFriend: ->
-    Friends.find({ friendId: @._id, userId: Meteor.userId() }).count() > 0
-
   anonymousCount: ->
     Meteor.presences.find({ 'state.postId': Session.get('postId'), userId: { $exists: false }}).count()
 
@@ -36,7 +33,11 @@ Template.userList.helpers {
         "online"
     else
       "offline"
+
 }
+
+Handlebars.registerHelper 'displayCount', (count) ->
+  if count > 1000 then "1000+" else count
 
 Template.userList.events {
   'click .actionFriend': (event, template) ->
@@ -142,5 +143,7 @@ Template.message.events {
 }
 
 Template.message.rendered = ->
+  # shouldScroll = $('.messages').scrollTop() + $('.messages').height() == $('#messages').height()
+  # if (shouldScroll)
   $('.messages').scrollTop(9999999)
 
