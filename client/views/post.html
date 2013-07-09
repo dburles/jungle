@@ -15,6 +15,13 @@
       </div>
       
       <div class="message-pane shadow">
+        <div class="message-tab">
+          {{#if messagesVisible}}
+            <i class="icon-chevron-sign-left"></i>
+          {{else}}
+            <i class="icon-chevron-sign-right"></i>
+          {{/if}}
+        </div>
         {{> messages}}
         {{> messageForm}}
       </div>
