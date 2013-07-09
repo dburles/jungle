@@ -7,6 +7,7 @@ Session.setDefault 'username', null
 Session.setDefault 'file', null
 Session.setDefault 'fileReady', null
 Session.setDefault 'away', false
+Session.setDefault 'loaded', false
 
 Meteor.startup ->
   filepicker.setKey 'Ay0CJr5oZQi6jI6mzQTbgz'
@@ -34,13 +35,15 @@ handles = []
 
 @signedIn = ->
   if not Meteor.user()
-    alert "Please sign-in first"
+    $.bootstrapGrowl "Please sign-in first!", { type: 'error' }
     return false
   return true
 
 Deps.autorun ->
   isReady = globalSubscriptionHandles.every( (handle) ->
-    handle.ready()  
+    handle.ready()
   )
-  if isReady
+  if isReady and not Session.get 'loaded'
+    # switch off the spinner
     $('body').spin('modal')
+    Session.set 'loaded', true
