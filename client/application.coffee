@@ -26,7 +26,7 @@ globalSubscriptionHandles.push Meteor.subscribe 'pins'
 
 @setAwayTimer = _.debounce ->
     Session.set 'away', true
-, 2000 # 5 minutes
+, 300000 # 5 minutes
 
 @signedIn = ->
   if not Meteor.user()
