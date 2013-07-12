@@ -1,5 +1,5 @@
 Meteor.Router.beforeRouting = ->
-  setAwayTimeout()
+  resetAwayTimer()
 
 Meteor.Router.add {
   '/': 'home'
