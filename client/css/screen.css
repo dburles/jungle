@@ -2,9 +2,36 @@ html {
   position: relative;
   min-height: 100%;
 }
+body {
+  padding-bottom: 100px;
+}
+#login-buttons .dropdown-toggle .caret {
+  border-top-color: #fff;
+  border-bottom-color: #fff;
+}
+.table th, .table td { border-top: none; }
 table#messages td.image img {
   min-width: 50px;
   min-height: 50px;
+}
+table#messages {
+  width: 100%;
+  background: #fff;
+}
+table#messages td {
+  padding: 8px 0;
+}
+
+table#messages td:nth-child(1), table#messages td:nth-child(2) {
+  width: 35px;
+  text-align: center;
+}
+table#messages td:nth-child(3) {
+  width: 70px;
+  text-align: center;
+}
+table#messages td:nth-child(4) {
+  width: 10%;
 }
 .hero-unit {
   padding: 30px;
@@ -12,10 +39,19 @@ table#messages td.image img {
 a {
   cursor: pointer;
 }
+.messageForm {
+  width: 90%;
+  position: absolute;
+  bottom: 0;
+  margin: 0 -5px 0 0;
+  height: 30px;
+  padding: 5px 0 5px 5px;
+}
 .messageForm span.action {
   width: 20%;
 }
 .messageForm input {
+  float: left;
   width: 80%;
 }
 .pinned {
@@ -37,7 +73,8 @@ a {
   position: absolute;
   right: 0;
   top: 0;
-  opacity: 0.9;
+  /*opacity: 0.9;*/
+  border: 1px solid #DDD;
 }
 .messages {
   overflow-y: auto;
@@ -45,14 +82,23 @@ a {
   height: 400px;
   margin-bottom: 40px;
 }
-.messageForm {
-  width: 100%;
+
+.message-tab {
+  cursor: pointer;
   position: absolute;
-  right: 0;
-  bottom: 0;
-  margin: 0 -5px 0 0;
-  height: 30px;
-  padding: 5px 0;
+  top: 170px;
+  left: -29px;
+  background: #fff;
+  padding: 7px;
+  height: 70px;
+  vertical-align: middle;
+  border-top: 1px solid #CCC;
+  border-left: 1px solid #CCC;
+  border-bottom: 1px solid #CCC;
+}
+.message-tab i {
+  padding-top: 25px;
+  color: #000;
 }
 /*.shadow {
   -webkit-box-shadow: 14px 0px 28px 13px rgba(0, 0, 0, 0.8);
@@ -64,7 +110,11 @@ a {
   -moz-box-shadow:    -10px 0px 50px rgba(50, 50, 50, 0.8);
   box-shadow:         -10px 0px 50px rgba(50, 50, 50, 0.8);
 }
-
+.rounded {
+  -webkit-border-radius: 5px;
+     -moz-border-radius: 5px;
+          border-radius: 5px;
+}
 
 /* bootstrap overrides */
 .container {

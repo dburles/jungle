@@ -7,11 +7,11 @@ Session.setDefault 'username', null
 Session.setDefault 'file', null
 Session.setDefault 'fileReady', null
 Session.setDefault 'away', false
-Session.setDefault 'loaded', false
 
 Meteor.startup ->
   filepicker.setKey 'Ay0CJr5oZQi6jI6mzQTbgz'
   $('body').spin('modal')
+  Session.set 'loaded', false
 
 globalSubscriptionHandles = []
 globalSubscriptionHandles.push Meteor.subscribe 'userPresence'
