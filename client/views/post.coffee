@@ -33,7 +33,6 @@ Template.userList.helpers {
         "online"
     else
       "offline"
-
 }
 
 Handlebars.registerHelper 'displayCount', (count) ->
@@ -106,7 +105,7 @@ Template.messageForm.events {
         }
         Session.set 'file', null
         event.target.reset()
-        setAwayTimeout()
+        resetAwayTimer()
 
   'click a#picker': ->
     if signedIn()

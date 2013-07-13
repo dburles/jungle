@@ -20,18 +20,13 @@ globalSubscriptionHandles.push Meteor.subscribe 'directory'
 globalSubscriptionHandles.push Meteor.subscribe 'friends'
 globalSubscriptionHandles.push Meteor.subscribe 'pins'
 
-handles = []
-
-@setAwayTimeout = ->
+@resetAwayTimer = ->
   Session.set 'away', false
-  _.each handles, (handle) ->
-    Meteor.clearTimeout handle
-    handles.splice(_.indexOf(handle), 1)
+  setAwayTimer()
 
-  handles.push(
-    Meteor.setTimeout ->
-      Session.set 'away', true
-    , 300000) # 5 minutes
+@setAwayTimer = _.debounce ->
+    Session.set 'away', true
+, 300000 # 5 minutes
 
 @signedIn = ->
   if not Meteor.user()
