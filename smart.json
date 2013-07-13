@@ -3,7 +3,6 @@
     "router": {},
     "presence": {},
     "font-awesome": {},
-    "bootstrap-growl": {},
-    "accounts-ui-bootstrap-dropdown": {}
+    "bootstrap-growl": {}
   }
 }

@@ -5,8 +5,7 @@
       "router": {},
       "presence": {},
       "font-awesome": {},
-      "bootstrap-growl": {},
-      "accounts-ui-bootstrap-dropdown": {}
+      "bootstrap-growl": {}
     },
     "packages": {
       "router": {
@@ -28,11 +27,6 @@
         "git": "https://github.com/TimHeckel/meteor-bootstrap-growl.git",
         "tag": "v0.1.1",
         "commit": "674fd231a46e405f8d4eb463725d8003a02374ec"
-      },
-      "accounts-ui-bootstrap-dropdown": {
-        "git": "https://github.com/erobit/meteor-accounts-ui-bootstrap-dropdown.git",
-        "tag": "v0.1.5",
-        "commit": "e12b128f140caa2797720cbd5fae084de7810c6a"
       },
       "page-js-ie-support": {
         "git": "https://github.com/tmeasday/meteor-page-js-ie-support.git",
