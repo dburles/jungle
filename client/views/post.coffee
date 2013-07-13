@@ -7,7 +7,7 @@ Template.userList.helpers {
     Friends.find({ userId: Meteor.userId() }).count() > 0
 
   users: ->
-    presences = Meteor.presences.find { 'state.postId': Session.get 'postId' }, sort: { 'state.username': 1 }
+    presences = Meteor.presences.find { 'state.postId': Session.get('postId') }, sort: { 'state.username': 1 }
     Meteor.users.find({ _id: { $in: presences.map (p) -> p.userId }})
 
   anonymousCount: ->
@@ -41,33 +41,51 @@ Handlebars.registerHelper 'displayCount', (count) ->
 Template.userList.events {
   'click .actionFriend': (event, template) ->
     event.preventDefault()
-    if signedIn()
-      filter = { friendId: @._id, userId: Meteor.userId() }
-      friend = Friends.findOne filter
-
-      if friend
-        friendUser = Meteor.users.findOne(friend.friendId)
-        if confirm "Are you sure you want to unfriend " + friendUser.username + "?"
-          Friends.remove friend._id
-          $.bootstrapGrowl "You are no longer friends with " + friendUser.username
-      else
-        Friends.insert filter
-        friend = Friends.findOne filter
-        friendUser = Meteor.users.findOne(friend.friendId)
-        $.bootstrapGrowl "Added " + friendUser.username + " to friends", { type: 'success' }
+    actionFriend @._id
 }
 
 Template.post.helpers {
   post: ->
     Jungle.findOne Session.get 'postId'
+
+  messagePaneHidden: ->
+    Session.get 'messagePaneHidden'
+}
+
+Template.postActions.helpers { 
+  isPinned: ->
+    Pins.find({ postId: Session.get('postId'), userId: Meteor.userId() }).count() > 0
+
+  isFriend: ->
+    post = Jungle.findOne Session.get 'postId'
+    if post
+      Friends.find({ friendId: post.userId, userId: Meteor.userId() }).count() > 0
+
+  isUser: ->
+    post = Jungle.findOne Session.get 'postId'
+    Meteor.userId() is post.userId
+
+  post: ->
+    Jungle.findOne Session.get 'postId'
+}
+
+Template.postActions.events {
+  'click .actionPin': (event, template) ->
+    event.preventDefault()
+    actionPin Session.get 'postId'
+
+  'click .actionFriend': (event, template) ->
+    event.preventDefault()
+    post = Jungle.findOne Session.get 'postId'
+    actionFriend post.userId
 }
 
 Template.messages.helpers {
   messages: ->
-    Jungle.find { _id: { $not: Session.get 'postId' }, parentId: Session.get 'postId' }, sort: { ts: 1 }
+    Jungle.find { _id: { $not: Session.get('postId') }, parentId: Session.get('postId') }, sort: { ts: 1 }
   
   count: ->
-    Jungle.find({ _id: { $not: Session.get 'postId' }, parentId: Session.get 'postId' }).count()
+    Jungle.find({ _id: { $not: Session.get('postId') }, parentId: Session.get('postId') }).count()
 }
 
 Template.message.helpers {
@@ -76,6 +94,20 @@ Template.message.helpers {
 
   isPinned: ->
     Pins.find({ postId: @._id, userId: Meteor.userId() }).count() > 0
+}
+
+Template.post.events {
+  'click .message-tab': ->
+    if Session.get 'messagePaneHidden'
+      # $('.messages').show();
+      # $('.messageForm').show();
+      # $('.message-pane').css('width', '50%');
+      Session.set 'messagePaneHidden', false
+    else
+      # $('.messages').hide();
+      # $('.messageForm').hide();
+      # $('.message-pane').css('width', '0');
+      Session.set 'messagePaneHidden', true
 }
 
 Template.messageForm.helpers {
@@ -119,26 +151,6 @@ Template.messageForm.events {
     filepicker.remove Session.get 'file'
     Session.set 'file', null
     false
-}
-
-Template.message.events {
-  'click .actionPin': (event, template) ->
-    event.preventDefault()
-    if signedIn()
-      filter = { postId: @._id, userId: Meteor.userId() }
-      pin = Pins.findOne filter
-      
-      if pin
-        post = Jungle.findOne(pin.postId)
-        user = Meteor.users.findOne(post.userId)
-        Pins.remove pin._id
-        $.bootstrapGrowl "Unpinned " + user.username + "'s message"
-      else
-        Pins.insert _.extend(filter, { ts: (new Date).getTime() })
-        pin = Pins.findOne filter
-        post = Jungle.findOne(pin.postId)
-        user = Meteor.users.findOne(post.userId)
-        $.bootstrapGrowl "Pinned " + user.username + "'s message to your profile", { type: 'success' }
 }
 
 Template.message.rendered = ->

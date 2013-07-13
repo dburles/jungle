@@ -4,7 +4,7 @@ Template.friendList.helpers {
     user.username if user
   
   friends: ->
-    friends = Friends.find { userId: Session.get 'profileUserId' }
+    friends = Friends.find { userId: Session.get('profileUserId') }
     Meteor.users.find { _id: { $in: friends.map (user) -> user.friendId }}, sort: { username: 1 }
 
   isFriend: ->
@@ -14,7 +14,7 @@ Template.friendList.helpers {
     Meteor.userId() is @._id
 
   hasFriends: ->
-    Friends.find({ userId: Session.get 'profileUserId' }).count() > 0
+    Friends.find({ userId: Session.get('profileUserId') }).count() > 0
 
   friendViewingPost: ->
     presence = Meteor.presences.findOne { userId: @._id }
@@ -38,28 +38,29 @@ Template.hero.helpers {
     user.username if user
 }
 
+Template.profileActions.helpers { 
+  isFriend: ->
+    Friends.find({ friendId: Session.get('profileUserId'), userId: Meteor.userId() }).count() > 0
+
+  isUser: ->
+    Meteor.userId() is Session.get 'profileUserId'
+}
+
+Template.profileActions.events {
+  'click .actionFriend': (event, template) ->
+    event.preventDefault()
+    actionFriend Session.get 'profileUserId'
+}
+
 Template.friendList.events {
   'click .actionFriend': (event, template) ->
     event.preventDefault()
-    if signedIn()
-      filter = { friendId: @._id, userId: Meteor.userId() }
-      friend = Friends.findOne filter
-
-      if friend
-        friendUser = Meteor.users.findOne(friend.friendId)
-        if confirm "Are you sure you want to unfriend " + friendUser.username + "?"
-          Friends.remove friend._id
-          $.bootstrapGrowl "You are no longer friends with " + friendUser.username
-      else
-        Friends.insert filter
-        friend = Friends.findOne filter
-        friendUser = Meteor.users.findOne(friend.friendId)
-        $.bootstrapGrowl "Added " + friendUser.username + " to friends", { type: 'success' }
+    actionFriend @._id
 }
 
 Template.pins.helpers {
   pins: ->
-    Pins.find { userId: Session.get 'profileUserId' }, sort: { ts: -1 }
+    Pins.find { userId: Session.get('profileUserId') }, sort: { ts: -1 }
 }
 
 Template.pinned.helpers {
