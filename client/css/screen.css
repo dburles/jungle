@@ -10,6 +10,9 @@ body {
   border-bottom-color: #fff;
 }
 .table th, .table td { border-top: none; }
+table#messages .badge {
+  opacity: 0.6;
+}
 table#messages td.image img {
   min-width: 50px;
   min-height: 50px;
@@ -98,7 +101,7 @@ a {
 }
 .message-tab i {
   padding-top: 25px;
-  color: #000;
+  color: #AAA;
 }
 /*.shadow {
   -webkit-box-shadow: 14px 0px 28px 13px rgba(0, 0, 0, 0.8);
