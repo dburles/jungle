@@ -17,9 +17,14 @@ Template.friendList.helpers {
     Friends.find({ userId: Session.get('profileUserId') }).count() > 0
 
   friendViewingPost: ->
-    presence = Meteor.presences.findOne { userId: @._id }
+    presence = Meteor.presences.findOne { userId: @._id, 'state.postId': { $ne: null }}
     if presence
       Jungle.findOne(presence.state.postId)
+
+  friendViewingProfile: ->
+    presence = Meteor.presences.findOne { userId: @._id, 'state.profileUserId': { $ne: null } }
+    if presence
+      Meteor.users.findOne(presence.state.profileUserId)
 
   status: ->
     presence = Meteor.presences.findOne { userId: @._id }

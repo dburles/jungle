@@ -5,12 +5,12 @@ now
     posting a picture breaks the layout
 
   make posts / profile DRY
-  loading states
+  *loading states
   
   private messages
   unpin posts from own profile
   show user status on their profile
-  add friend/ indicate from profile
+  *add friend/ indicate from profile
   sounds when not focused
   highlight unfocused messages like facebook chat
 

@@ -12,27 +12,28 @@
           </li>
         </ul>
         {{/if}}
-        
-          {{> postContent post}}
-          <hr>
-          {{> postActions}}
-        
+        {{> postContent post}}
+        <hr>
+        {{> postActions}}
       </div>
-      
-      <div class="message-pane rounded" style="{{#if messagePaneHidden}}width: 0{{/if}}">
-        <div class="message-tab">
-          {{#if messagePaneHidden}}
-            <i class="icon-chevron-sign-left"></i>
-          {{else}}
-            <i class="icon-chevron-sign-right"></i>
-          {{/if}}
-        </div>
-        {{#unless messagePaneHidden}}
-          {{> messages}}
-          {{> messageForm}}
-        {{/unless}}
-      </div>
+      {{> messagePane}}
     </div>
+  </div>
+</template>
+
+<template name="messagePane">
+  <div class="message-pane rounded" style="{{#if messagePaneHidden}}width: 0{{/if}}">
+    <div class="message-tab">
+      {{#if messagePaneHidden}}
+        <i class="icon-chevron-sign-left"></i>
+      {{else}}
+        <i class="icon-chevron-sign-right"></i>
+      {{/if}}
+    </div>
+    {{#unless messagePaneHidden}}
+      {{> messages}}
+      {{> messageForm}}
+    {{/unless}}
   </div>
 </template>
 
@@ -51,6 +52,7 @@
         <button class="btn btn-small actionPin"><i class="icon-pushpin"></i> Pin</button>
       {{/if}}
     </div>
+    {{#unless isUser}}
     <div class="btn-group">
       {{#if isFriend}}
         <button class="btn btn-small btn-success dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i> Friends <span class="caret"></span></button>
@@ -61,6 +63,7 @@
         <button class="btn btn-small actionFriend"><i class="icon-user"></i> Add Friend</button>
       {{/if}}
     </div>
+    {{/unless}}
   </div>
 </template>
 
@@ -80,6 +83,9 @@
         <li class="active">
           {{#with friendViewingPost}}
             <a href="{{postPath this}}">{{message}} <span class="pull-right">{{displayCount messageCount}}</span></a>
+          {{/with}}
+          {{#with friendViewingProfile}}
+            <a href="{{profilePath this}}">{{username}}'s profile</a>
           {{/with}}
         </li>
       {{/each}}

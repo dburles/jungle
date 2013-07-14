@@ -42,7 +42,10 @@
         <li class="active">
           {{#if isFriend}}
             {{#with friendViewingPost}}
-              <a href="{{postPath this}}">{{message}}</a>
+              <a href="{{postPath this}}">{{message}} <span class="pull-right">{{displayCount messageCount}}</span></a>
+            {{/with}}
+            {{#with friendViewingProfile}}
+              <a href="{{profilePath this}}">{{username}}'s profile</a>
             {{/with}}
           {{/if}}
         </li>
@@ -59,6 +62,7 @@
 
 <template name="profileActions">  
   <div class="btn-toolbar">
+    {{#unless isUser}}
     <div class="btn-group">
       {{#if isFriend}}
         <button class="btn btn-small btn-success dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i> Friends <span class="caret"></span></button>
@@ -69,6 +73,7 @@
         <button class="btn btn-small actionFriend"><i class="icon-user"></i> Add Friend</button>
       {{/if}}
     </div>
+    {{/unless}}
   </div>
 </template>
 

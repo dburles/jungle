@@ -20,9 +20,14 @@ Template.userList.helpers {
     Meteor.userId() is @._id
 
   friendViewingPost: ->
-    presence = Meteor.presences.findOne { userId: @._id }
+    presence = Meteor.presences.findOne { userId: @._id, 'state.postId': { $ne: null }}
     if presence
-      presence = Jungle.findOne(presence.state.postId)
+      Jungle.findOne(presence.state.postId)
+
+  friendViewingProfile: ->
+    presence = Meteor.presences.findOne { userId: @._id, 'state.profileUserId': { $ne: null } }
+    if presence
+      Meteor.users.findOne(presence.state.profileUserId)
 
   status: ->
     presence = Meteor.presences.findOne { userId: @._id }
@@ -47,7 +52,9 @@ Template.userList.events {
 Template.post.helpers {
   post: ->
     Jungle.findOne Session.get 'postId'
+}
 
+Template.messagePane.helpers {
   messagePaneHidden: ->
     Session.get 'messagePaneHidden'
 }
@@ -63,7 +70,8 @@ Template.postActions.helpers {
 
   isUser: ->
     post = Jungle.findOne Session.get 'postId'
-    Meteor.userId() is post.userId
+    if post
+      Meteor.userId() is post.userId
 
   post: ->
     Jungle.findOne Session.get 'postId'
