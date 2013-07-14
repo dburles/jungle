@@ -101,7 +101,8 @@ a {
 }
 .message-tab i {
   padding-top: 25px;
-  color: #AAA;
+  color: #666;
+  text-align: center;
 }
 /*.shadow {
   -webkit-box-shadow: 14px 0px 28px 13px rgba(0, 0, 0, 0.8);
