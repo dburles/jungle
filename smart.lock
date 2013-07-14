@@ -5,7 +5,8 @@
       "router": {},
       "presence": {},
       "font-awesome": {},
-      "bootstrap-growl": {}
+      "bootstrap-growl": {},
+      "fastclick": {}
     },
     "packages": {
       "router": {
@@ -27,6 +28,11 @@
         "git": "https://github.com/TimHeckel/meteor-bootstrap-growl.git",
         "tag": "v0.1.1",
         "commit": "674fd231a46e405f8d4eb463725d8003a02374ec"
+      },
+      "fastclick": {
+        "git": "https://github.com/percolatestudio/meteor-fastclick",
+        "tag": "v0.6.7",
+        "commit": "fcb3bfd34d9f6874e626b4e24e8f54107938db41"
       },
       "page-js-ie-support": {
         "git": "https://github.com/tmeasday/meteor-page-js-ie-support.git",

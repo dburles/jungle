@@ -3,6 +3,7 @@
     "router": {},
     "presence": {},
     "font-awesome": {},
-    "bootstrap-growl": {}
+    "bootstrap-growl": {},
+    "fastclick": {}
   }
 }
