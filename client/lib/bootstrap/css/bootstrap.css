@@ -1,3 +1,10 @@
+@font-face {
+  font-family: 'Telex';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Telex-Regular'), url(http://themes.googleusercontent.com/static/fonts/telex/v1/jGZ4PgolKXEtn2OM186qHaCWcynf_cDxXwCLxiixG1c.woff) format('woff');
+}
+
 /*!
  * Bootstrap v2.3.2
  *
