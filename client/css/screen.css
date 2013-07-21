@@ -60,8 +60,11 @@ a {
 .pinned {
   color: red;
 }
-.online {
+.online-focus {
   color: rgb(0, 197, 0);
+}
+.online {
+  color: rgb(195, 228, 195);
 }
 .offline {
   color: red;

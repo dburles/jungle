@@ -5,7 +5,7 @@ Meteor.publish 'userPresence', ->
   
   # ProTip: unless you need it, don't send lastSeen down as it'll make your 
   # templates constantly re-render (and use bandwidth)
-  Meteor.presences.find {}, { fields: { state: true, userId: true }}
+  Meteor.presences.find {}, { fields: { state: true, focus: true, userId: true }}
 
 Meteor.publish 'jungle', ->
   Jungle.find {}

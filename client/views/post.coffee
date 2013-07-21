@@ -34,6 +34,8 @@ Template.userList.helpers {
     if presence
       if presence.state.away
         "away"
+      else if presence.focus
+        "online-focus"
       else
         "online"
     else
