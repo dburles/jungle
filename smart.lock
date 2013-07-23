@@ -17,7 +17,7 @@
       "presence": {
         "git": "https://github.com/dburles/meteor-presence.git",
         "tag": "v0.2.3",
-        "commit": "904af7a20e0decb6273a1997b0fa1ec227b2a11f"
+        "commit": "0506e82fd68f404cb0fb80362c2f513998ed0a67"
       },
       "font-awesome": {
         "git": "https://github.com/nate-strauser/meteor-font-awesome.git",
