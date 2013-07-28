@@ -1,3 +1,5 @@
+focus = true
+
 Meteor.Presence.state = ->
   # console.log('presence tick')
   {
@@ -6,5 +8,13 @@ Meteor.Presence.state = ->
     postId: Session.get 'postId'
     profileUserId: Session.get 'profileUserId'
     away: Session.get 'away'
+    focus: focus
     # currentTypingPostId: Session.get 'currentTypingPostId'
   }
+
+Meteor.startup ->
+  window.onfocus = ->
+    focus = true
+
+  window.onblur = ->
+    focus = false

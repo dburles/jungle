@@ -6,7 +6,8 @@
       "presence": {},
       "font-awesome": {},
       "bootstrap-growl": {},
-      "fastclick": {}
+      "fastclick": {},
+      "smart-collections": {}
     },
     "packages": {
       "router": {
@@ -15,9 +16,9 @@
         "commit": "7bd3a1bdd1099625bb8b49406d9b8f961d6f4a17"
       },
       "presence": {
-        "git": "https://github.com/dburles/meteor-presence.git",
-        "tag": "v0.2.3",
-        "commit": "0506e82fd68f404cb0fb80362c2f513998ed0a67"
+        "git": "https://github.com/tmeasday/meteor-presence.git",
+        "tag": "v0.2.1",
+        "commit": "265948d9aab7334c009cfa2daf84869a26c5318c"
       },
       "font-awesome": {
         "git": "https://github.com/nate-strauser/meteor-font-awesome.git",
@@ -33,6 +34,11 @@
         "git": "https://github.com/percolatestudio/meteor-fastclick",
         "tag": "v0.6.7",
         "commit": "fcb3bfd34d9f6874e626b4e24e8f54107938db41"
+      },
+      "smart-collections": {
+        "git": "https://github.com/arunoda/meteor-smart-collections.git",
+        "tag": "v0.1.16",
+        "commit": "0691a70f1b8afb457b25011b7fdb4f8aef483034"
       },
       "page-js-ie-support": {
         "git": "https://github.com/tmeasday/meteor-page-js-ie-support.git",
