@@ -4,7 +4,6 @@
     "presence": {},
     "font-awesome": {},
     "bootstrap-growl": {},
-    "fastclick": {},
-    "smart-collections": {}
+    "fastclick": {}
   }
 }
