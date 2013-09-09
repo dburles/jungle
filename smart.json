@@ -4,6 +4,7 @@
     "presence": {},
     "font-awesome": {},
     "bootstrap-growl": {},
-    "fastclick": {}
+    "fastclick": {},
+    "accounts-ui-bootstrap-dropdown": {}
   }
 }

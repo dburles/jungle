@@ -6,23 +6,24 @@
       "presence": {},
       "font-awesome": {},
       "bootstrap-growl": {},
-      "fastclick": {}
+      "fastclick": {},
+      "accounts-ui-bootstrap-dropdown": {}
     },
     "packages": {
       "router": {
         "git": "https://github.com/tmeasday/meteor-router.git",
-        "tag": "v0.5.4",
-        "commit": "e40ee450a756b54a32ed67be4595772403256fb5"
+        "tag": "v0.5.4.1",
+        "commit": "d00e380dda2184b70e909fc4a0fb5358d602c586"
       },
       "presence": {
         "git": "https://github.com/tmeasday/meteor-presence.git",
-        "tag": "v0.2.3",
-        "commit": "74d66ab30e179fe958b2792d1b396240f420105b"
+        "tag": "v0.2.4",
+        "commit": "e59a12739685972c970f70956c4d3e78c31818ec"
       },
       "font-awesome": {
         "git": "https://github.com/nate-strauser/meteor-font-awesome.git",
-        "tag": "v3.2.0",
-        "commit": "2cba6f907a2579cae2d399b522f9544c13d5e091"
+        "tag": "v3.2.1",
+        "commit": "38bdfff72dfb8857b272f9a9b056045d6a015489"
       },
       "bootstrap-growl": {
         "git": "https://github.com/TimHeckel/meteor-bootstrap-growl.git",
@@ -33,6 +34,11 @@
         "git": "https://github.com/percolatestudio/meteor-fastclick",
         "tag": "v0.6.7",
         "commit": "fcb3bfd34d9f6874e626b4e24e8f54107938db41"
+      },
+      "accounts-ui-bootstrap-dropdown": {
+        "git": "https://github.com/erobit/meteor-accounts-ui-bootstrap-dropdown.git",
+        "tag": "v0.6.5.1",
+        "commit": "c8b29d2e7f8611d6dec9d6d23c1c2b94e000b0fb"
       },
       "page-js-ie-support": {
         "git": "https://github.com/tmeasday/meteor-page-js-ie-support.git",

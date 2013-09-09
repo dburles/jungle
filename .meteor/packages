@@ -16,4 +16,4 @@ presence
 router
 standard-app-packages
 accounts-base
-accounts-ui
+accounts-ui-bootstrap-dropdown
