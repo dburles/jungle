@@ -1,6 +1,6 @@
-@Jungle = new Meteor.SmartCollection 'jungle'
-@Friends = new Meteor.SmartCollection 'friends'
-@Pins = new Meteor.SmartCollection 'pins'
+@Jungle = new Meteor.Collection 'jungle'
+@Friends = new Meteor.Collection 'friends'
+@Pins = new Meteor.Collection 'pins'
 
 Jungle.allow {
   insert: ->

@@ -8,3 +8,12 @@ coffeescript
 underscore
 accounts-password
 jquery
+bootstrap-growl
+fastclick
+font-awesome
+page-js-ie-support
+presence
+router
+standard-app-packages
+accounts-base
+accounts-ui-bootstrap-dropdown
