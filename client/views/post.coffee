@@ -34,7 +34,7 @@ Template.userList.helpers {
 
   status: ->
     presence = Meteor.presences.findOne { userId: @._id }
-    if presence
+    if presence && presence.state
       if presence.state.away
         "away"
       else if presence.state.focus

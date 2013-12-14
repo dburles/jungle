@@ -44,12 +44,12 @@
     </div>
     <div class="btn-group">
       {{#if isPinned}}
-        <button class="btn btn-small btn-success dropdown-toggle" data-toggle="dropdown"><i class="icon-pushpin"></i> Pinned <span class="caret"></span></button>
+        <button class="btn btn-small btn-success dropdown-toggle" data-toggle="dropdown"><i class="icon-asterisk icon-white"></i> Pinned <span class="caret"></span></button>
         <ul class="dropdown-menu">
           <li><a href="#" class="actionPin">Unpin</a></li>
         </ul>
       {{else}}
-        <button class="btn btn-small actionPin"><i class="icon-pushpin"></i> Pin</button>
+        <button class="btn btn-small actionPin"><i class="icon-asterisk icon-white"></i> Pin</button>
       {{/if}}
     </div>
     {{#unless isUser}}
@@ -73,7 +73,7 @@
     {{#if hasFriends}}
       {{#each friends}}
         <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-circle {{status}}"></i> {{username}}<i class="icon-caret-down pull-right"></i></a>
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="circle {{status}}"></span> {{username}}<i class="icon-caret-down pull-right"></i></a>
           <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
             <li><a tabindex="-1" href="{{profilePath this}}">View Profile</a></li>
             <li class="divider"></li>
@@ -96,7 +96,7 @@
     <li class="nav-header">Viewing this post</li>
     {{#each users}}
       <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-circle {{status}}"></i> {{username}}<i class="icon-caret-down pull-right"></i></a>
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="circle {{status}}"></span> {{username}}<i class="icon-caret-down pull-right"></i></a>
         <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
           <li><a tabindex="-1" href="{{profilePath this}}">View Profile</a></li>
           {{#unless isUser}}

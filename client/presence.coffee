@@ -1,4 +1,4 @@
-focus = true
+Session.setDefault('browserFocus', true);
 
 Meteor.Presence.state = ->
   # console.log('presence tick')
@@ -8,13 +8,13 @@ Meteor.Presence.state = ->
     postId: Session.get 'postId'
     profileUserId: Session.get 'profileUserId'
     away: Session.get 'away'
-    focus: focus
+    focus: Session.get('browserFocus')
     # currentTypingPostId: Session.get 'currentTypingPostId'
   }
 
 Meteor.startup ->
   window.onfocus = ->
-    focus = true
+    Session.set('browserFocus', true);
 
   window.onblur = ->
-    focus = false
+    Session.set('browserFocus', false);

@@ -1,8 +1,6 @@
 {
   "packages": {
     "router": {},
-    "presence": {},
-    "font-awesome": {},
     "bootstrap-growl": {},
     "fastclick": {},
     "accounts-ui-bootstrap-dropdown": {}
